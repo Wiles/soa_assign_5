@@ -1,0 +1,50 @@
+﻿use soa5
+go
+
+drop table Cart
+drop table [Order]
+drop table Product
+drop table Customer
+go
+
+create table Customer
+(
+	custID int identity primary key,
+	firstName nvarchar(50),
+	lastName nvarchar(50),
+	phoneNumber nvarchar(12)
+)
+go
+
+create table Product
+(
+	prodID int identity primary key,
+	prodName nvarchar(100),
+	price float,
+	prodWeight float,
+	inStock tinyint
+)
+go
+
+create table [Order]
+(
+	orderID int identity primary key,
+	custID int not null,
+	poNumber nvarchar(30),
+	orderDate nvarchar(10),
+	
+	foreign key ( custID ) references Customer (custID)
+)
+go
+
+create table Cart
+(
+	orderID int not null,
+	prodID int not null,
+	quantity int,
+	
+	primary key (orderID, prodID),
+	foreign key ( orderID ) references [Order] (orderID),
+	foreign key ( prodID ) references Product (prodID)
+)
+go

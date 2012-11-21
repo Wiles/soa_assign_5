@@ -8,9 +8,15 @@ namespace server.Controllers
 {
     public class ServiceController : Controller
     {
-        //
-        // GET: /Default1/
 
+        // GET: /Service/.*?/
+        public string Index(string value)
+        {
+            return Index(new string[] {value});
+        }
+
+        //
+        // GET: /Service/.*?/*
         public string Index(string[] values)
         {
             return String.Join(",", values);
