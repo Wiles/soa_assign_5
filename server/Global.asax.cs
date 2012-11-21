@@ -19,12 +19,6 @@ namespace server
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-
-            RouteTable.Routes.MapRoute(
-                "CatchAllRoute",
-                "{controller}/{action}/{*values}",
-                new { controller = "Service", action = "index" }
-            );
         }
     }
 }

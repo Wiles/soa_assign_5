@@ -13,6 +13,12 @@ namespace server
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            RouteTable.Routes.MapRoute(
+                "CatchAllRoute",
+                "service/{*values}",
+                new { controller = "Service", action = "CatchAll" }
+            );
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

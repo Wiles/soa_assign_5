@@ -9,7 +9,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ClientSite.Sql
+namespace server.Sql
 {
 	using System.Data.Linq;
 	using System.Data.Linq.Mapping;
@@ -23,7 +23,7 @@ namespace ClientSite.Sql
 	
 	
 	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="soa5")]
-	public partial class Soa5DataDataContext : System.Data.Linq.DataContext
+	public partial class SoaDataContext : System.Data.Linq.DataContext
 	{
 		
 		private static System.Data.Linq.Mapping.MappingSource mappingSource = new AttributeMappingSource();
@@ -44,31 +44,31 @@ namespace ClientSite.Sql
     partial void DeleteOrder(Order instance);
     #endregion
 		
-		public Soa5DataDataContext() : 
+		public SoaDataContext() : 
 				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["soa5ConnectionString"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public Soa5DataDataContext(string connection) : 
+		public SoaDataContext(string connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public Soa5DataDataContext(System.Data.IDbConnection connection) : 
+		public SoaDataContext(System.Data.IDbConnection connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public Soa5DataDataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public SoaDataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public Soa5DataDataContext(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public SoaDataContext(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();

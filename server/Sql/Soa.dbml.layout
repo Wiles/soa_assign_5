@@ -1,47 +1,47 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="Soa5Data">
-  <DataContextMoniker Name="/Soa5DataDataContext" />
+  <DataContextMoniker Name="/SoaDataContext" />
   <nestedChildShapes>
     <classShape Id="a6fd94c1-c1b0-4830-b200-6c1dc8cc88bd" absoluteBounds="6.25, 1, 2, 1.3862939453125003">
-      <DataClassMoniker Name="/Soa5DataDataContext/Cart" />
+      <DataClassMoniker Name="/SoaDataContext/Cart" />
       <nestedChildShapes>
         <elementListCompartment Id="a0c699c3-d53c-463e-a071-5d25713eb6bc" absoluteBounds="6.265, 1.46, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <classShape Id="9f8590cb-b1c2-4915-9ac3-29dc0749f4d2" absoluteBounds="3.5, 3.75, 2, 1.7708968098958327">
-      <DataClassMoniker Name="/Soa5DataDataContext/Product" />
+      <DataClassMoniker Name="/SoaDataContext/Product" />
       <nestedChildShapes>
         <elementListCompartment Id="d0209da1-04f0-4992-a5aa-7c98fd371df2" absoluteBounds="3.515, 4.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <classShape Id="c0b7d8a1-648f-4557-a9da-5f34b7f3c99e" absoluteBounds="0.75, 0.875, 2, 1.5785953776041664">
-      <DataClassMoniker Name="/Soa5DataDataContext/Customer" />
+      <DataClassMoniker Name="/SoaDataContext/Customer" />
       <nestedChildShapes>
         <elementListCompartment Id="b5bdf466-0133-48b6-b592-9c70dfd0ed76" absoluteBounds="0.765, 1.335, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <classShape Id="04d42a26-b6e3-49f0-912e-2c485c527cee" absoluteBounds="3.5, 0.875, 2, 1.5785953776041666">
-      <DataClassMoniker Name="/Soa5DataDataContext/Order" />
+      <DataClassMoniker Name="/SoaDataContext/Order" />
       <nestedChildShapes>
         <elementListCompartment Id="11d7a09e-d2e7-4b47-87c6-5831e44a934a" absoluteBounds="3.515, 1.335, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5.5 : 4.63544840494792); (7.25 : 4.63544840494792); (7.25 : 2.3862939453125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/Soa5DataDataContext/Product/Product_Cart" />
+    <associationConnector edgePoints="[(5.5 : 4.63544840494792); (7.25 : 4.63544840494792); (7.25 : 2.3862939453125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SoaDataContext/Product/Product_Cart" />
       <nodes>
         <classShapeMoniker Id="9f8590cb-b1c2-4915-9ac3-29dc0749f4d2" />
         <classShapeMoniker Id="a6fd94c1-c1b0-4830-b200-6c1dc8cc88bd" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 1.69314697265625); (6.25 : 1.69314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/Soa5DataDataContext/Order/Order_Cart" />
+    <associationConnector edgePoints="[(5.5 : 1.69314697265625); (6.25 : 1.69314697265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SoaDataContext/Order/Order_Cart" />
       <nodes>
         <classShapeMoniker Id="04d42a26-b6e3-49f0-912e-2c485c527cee" />
         <classShapeMoniker Id="a6fd94c1-c1b0-4830-b200-6c1dc8cc88bd" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 1.66429768880208); (3.5 : 1.66429768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/Soa5DataDataContext/Customer/Customer_Order" />
+    <associationConnector edgePoints="[(2.75 : 1.66429768880208); (3.5 : 1.66429768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SoaDataContext/Customer/Customer_Order" />
       <nodes>
         <classShapeMoniker Id="c0b7d8a1-648f-4557-a9da-5f34b7f3c99e" />
         <classShapeMoniker Id="04d42a26-b6e3-49f0-912e-2c485c527cee" />

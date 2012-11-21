@@ -176,21 +176,12 @@
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Sql\Soa5Data.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>Soa5Data.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </Content>
-    <None Include="Sql\Soa5Data.dbml.layout">
-      <DependentUpon>Soa5Data.dbml</DependentUpon>
-    </None>
     <None Include="v8\Noesis.Javascript.x64.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="v8\Noesis.Javascript.x86.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <Content Include="Sql\SqlCreateScript.txt" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
   </ItemGroup>
@@ -228,11 +219,6 @@
     </Compile>
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
-    </Compile>
-    <Compile Include="Sql\Soa5Data.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Soa5Data.dbml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
