@@ -53,6 +53,11 @@ namespace server.Controllers
 
                 var queries = TableQuery.ListQueriesFromPath(values);
 
+                foreach (var query in queries)
+                {
+                    
+                }
+
                 throw new Exception("Failure to return JsonResult");
             }
             catch (Exception ex)

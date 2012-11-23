@@ -117,7 +117,9 @@ namespace server.Sql
 		
 		private int _prodID;
 		
-		private System.Nullable<int> _quantity;
+		private int _quantity;
+		
+		private byte _deleted;
 		
 		private EntityRef<Product> _Product;
 		
@@ -131,8 +133,10 @@ namespace server.Sql
     partial void OnorderIDChanged();
     partial void OnprodIDChanging(int value);
     partial void OnprodIDChanged();
-    partial void OnquantityChanging(System.Nullable<int> value);
+    partial void OnquantityChanging(int value);
     partial void OnquantityChanged();
+    partial void OndeletedChanging(byte value);
+    partial void OndeletedChanged();
     #endregion
 		
 		public Cart()
@@ -190,8 +194,8 @@ namespace server.Sql
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_quantity", DbType="Int")]
-		public System.Nullable<int> quantity
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_quantity", DbType="Int NOT NULL")]
+		public int quantity
 		{
 			get
 			{
@@ -206,6 +210,26 @@ namespace server.Sql
 					this._quantity = value;
 					this.SendPropertyChanged("quantity");
 					this.OnquantityChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_deleted", DbType="TinyInt NOT NULL")]
+		public byte deleted
+		{
+			get
+			{
+				return this._deleted;
+			}
+			set
+			{
+				if ((this._deleted != value))
+				{
+					this.OndeletedChanging(value);
+					this.SendPropertyChanging();
+					this._deleted = value;
+					this.SendPropertyChanged("deleted");
+					this.OndeletedChanged();
 				}
 			}
 		}
@@ -309,11 +333,13 @@ namespace server.Sql
 		
 		private string _prodName;
 		
-		private System.Nullable<double> _price;
+		private double _price;
 		
-		private System.Nullable<double> _prodWeight;
+		private double _prodWeight;
 		
-		private System.Nullable<byte> _inStock;
+		private byte _inStock;
+		
+		private byte _deleted;
 		
 		private EntitySet<Cart> _Carts;
 		
@@ -325,12 +351,14 @@ namespace server.Sql
     partial void OnprodIDChanged();
     partial void OnprodNameChanging(string value);
     partial void OnprodNameChanged();
-    partial void OnpriceChanging(System.Nullable<double> value);
+    partial void OnpriceChanging(double value);
     partial void OnpriceChanged();
-    partial void OnprodWeightChanging(System.Nullable<double> value);
+    partial void OnprodWeightChanging(double value);
     partial void OnprodWeightChanged();
-    partial void OninStockChanging(System.Nullable<byte> value);
+    partial void OninStockChanging(byte value);
     partial void OninStockChanged();
+    partial void OndeletedChanging(byte value);
+    partial void OndeletedChanged();
     #endregion
 		
 		public Product()
@@ -359,7 +387,7 @@ namespace server.Sql
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_prodName", DbType="NVarChar(100)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_prodName", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
 		public string prodName
 		{
 			get
@@ -379,8 +407,8 @@ namespace server.Sql
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_price", DbType="Float")]
-		public System.Nullable<double> price
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_price", DbType="Float NOT NULL")]
+		public double price
 		{
 			get
 			{
@@ -399,8 +427,8 @@ namespace server.Sql
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_prodWeight", DbType="Float")]
-		public System.Nullable<double> prodWeight
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_prodWeight", DbType="Float NOT NULL")]
+		public double prodWeight
 		{
 			get
 			{
@@ -419,8 +447,8 @@ namespace server.Sql
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_inStock", DbType="TinyInt")]
-		public System.Nullable<byte> inStock
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_inStock", DbType="TinyInt NOT NULL")]
+		public byte inStock
 		{
 			get
 			{
@@ -435,6 +463,26 @@ namespace server.Sql
 					this._inStock = value;
 					this.SendPropertyChanged("inStock");
 					this.OninStockChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_deleted", DbType="TinyInt NOT NULL")]
+		public byte deleted
+		{
+			get
+			{
+				return this._deleted;
+			}
+			set
+			{
+				if ((this._deleted != value))
+				{
+					this.OndeletedChanging(value);
+					this.SendPropertyChanging();
+					this._deleted = value;
+					this.SendPropertyChanged("deleted");
+					this.OndeletedChanged();
 				}
 			}
 		}
@@ -499,6 +547,8 @@ namespace server.Sql
 		
 		private string _phoneNumber;
 		
+		private byte _deleted;
+		
 		private EntitySet<Order> _Orders;
 		
     #region Extensibility Method Definitions
@@ -513,6 +563,8 @@ namespace server.Sql
     partial void OnlastNameChanged();
     partial void OnphoneNumberChanging(string value);
     partial void OnphoneNumberChanged();
+    partial void OndeletedChanging(byte value);
+    partial void OndeletedChanged();
     #endregion
 		
 		public Customer()
@@ -561,7 +613,7 @@ namespace server.Sql
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_lastName", DbType="NVarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_lastName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
 		public string lastName
 		{
 			get
@@ -581,7 +633,7 @@ namespace server.Sql
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phoneNumber", DbType="NVarChar(12)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phoneNumber", DbType="NVarChar(12) NOT NULL", CanBeNull=false)]
 		public string phoneNumber
 		{
 			get
@@ -597,6 +649,26 @@ namespace server.Sql
 					this._phoneNumber = value;
 					this.SendPropertyChanged("phoneNumber");
 					this.OnphoneNumberChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_deleted", DbType="TinyInt NOT NULL")]
+		public byte deleted
+		{
+			get
+			{
+				return this._deleted;
+			}
+			set
+			{
+				if ((this._deleted != value))
+				{
+					this.OndeletedChanging(value);
+					this.SendPropertyChanging();
+					this._deleted = value;
+					this.SendPropertyChanged("deleted");
+					this.OndeletedChanged();
 				}
 			}
 		}
@@ -661,6 +733,8 @@ namespace server.Sql
 		
 		private string _orderDate;
 		
+		private byte _deleted;
+		
 		private EntitySet<Cart> _Carts;
 		
 		private EntityRef<Customer> _Customer;
@@ -677,6 +751,8 @@ namespace server.Sql
     partial void OnpoNumberChanged();
     partial void OnorderDateChanging(string value);
     partial void OnorderDateChanged();
+    partial void OndeletedChanging(byte value);
+    partial void OndeletedChanged();
     #endregion
 		
 		public Order()
@@ -750,7 +826,7 @@ namespace server.Sql
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_orderDate", DbType="NVarChar(10)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_orderDate", DbType="NVarChar(10) NOT NULL", CanBeNull=false)]
 		public string orderDate
 		{
 			get
@@ -766,6 +842,26 @@ namespace server.Sql
 					this._orderDate = value;
 					this.SendPropertyChanged("orderDate");
 					this.OnorderDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_deleted", DbType="TinyInt NOT NULL")]
+		public byte deleted
+		{
+			get
+			{
+				return this._deleted;
+			}
+			set
+			{
+				if ((this._deleted != value))
+				{
+					this.OndeletedChanging(value);
+					this.SendPropertyChanging();
+					this._deleted = value;
+					this.SendPropertyChanged("deleted");
+					this.OndeletedChanged();
 				}
 			}
 		}

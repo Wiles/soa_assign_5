@@ -8,23 +8,24 @@ namespace shared.FormData
 {
     public class Screen2Data
     {
-        public int? Customer_CustId{ get; set; }
+        public int? Customer_CustID{ get; set; }
         public string Customer_Firstname { get; set; }
         public string Customer_Lastname { get; set; }
         public string Customer_PhoneNumber { get; set; }
 
-        public int? Product_ProdId{ get; set; }
+        public int? Product_ProdID{ get; set; }
         public string Product_ProdName { get; set; }
-        public string Product_Price { get; set; }
+        public double? Product_Price { get; set; }
         public int? Product_ProdWeight { get; set; }
+        public byte? Product_InStock { get; set; }
 
-        public int? Order_OrderId{ get; set; }
-        public int? Order_OrderCustId { get; set; }
-        public int? Order_PoNumber { get; set; }
+        public int? Order_OrderID{ get; set; }
+        public int? Order_CustID { get; set; }
+        public string Order_PoNumber { get; set; }
         public string Order_OrderDate { get; set; }
 
-        public int? Cart_CartOrderId{ get; set; }
-        public int? Cart_CartProdId { get; set; }
+        public int? Cart_OrderID{ get; set; }
+        public int? Cart_ProdID { get; set; }
         public int? Cart_Quantity { get; set; }
 
         public string ToUrl()

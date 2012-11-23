@@ -4,7 +4,8 @@
     <Type Name="Cart">
       <Column Name="orderID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="prodID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="quantity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="deleted" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
       <Association Name="Product_Cart" Member="Product" ThisKey="prodID" OtherKey="prodID" Type="Product" IsForeignKey="true" />
       <Association Name="Order_Cart" Member="Order" ThisKey="orderID" OtherKey="orderID" Type="Order" IsForeignKey="true" />
     </Type>
@@ -12,10 +13,11 @@
   <Table Name="dbo.Product" Member="Products">
     <Type Name="Product">
       <Column Name="prodID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="prodName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="price" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="prodWeight" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="inStock" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="prodName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="price" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="prodWeight" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="inStock" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="deleted" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
       <Association Name="Product_Cart" Member="Carts" ThisKey="prodID" OtherKey="prodID" Type="Cart" />
     </Type>
   </Table>
@@ -23,8 +25,9 @@
     <Type Name="Customer">
       <Column Name="custID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="firstName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="lastName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="phoneNumber" Type="System.String" DbType="NVarChar(12)" CanBeNull="true" />
+      <Column Name="lastName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="phoneNumber" Type="System.String" DbType="NVarChar(12) NOT NULL" CanBeNull="false" />
+      <Column Name="deleted" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
       <Association Name="Customer_Order" Member="Orders" ThisKey="custID" OtherKey="custID" Type="Order" />
     </Type>
   </Table>
@@ -33,7 +36,8 @@
       <Column Name="orderID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="custID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="poNumber" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
-      <Column Name="orderDate" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="orderDate" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="deleted" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
       <Association Name="Order_Cart" Member="Carts" ThisKey="orderID" OtherKey="orderID" Type="Cart" />
       <Association Name="Customer_Order" Member="Customer" ThisKey="custID" OtherKey="custID" Type="Customer" IsForeignKey="true" />
     </Type>
