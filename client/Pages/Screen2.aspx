@@ -20,7 +20,7 @@
         <br />
         Customer<br />
         <asp:Label ID="Label2" runat="server" Text="CustID"></asp:Label>
-        <asp:TextBox ID="custId" runat="server" Width="173px" EnableTheming="True" ReadOnly="True"></asp:TextBox>
+        <asp:TextBox ID="custId" runat="server" Width="173px" EnableTheming="True"></asp:TextBox>
         <asp:Label ID="Label3" runat="server" Text="Firstname"></asp:Label>
         <asp:TextBox ID="firstname" runat="server"></asp:TextBox>
         <asp:Label ID="Label4" runat="server" Text="Lastname"></asp:Label>
@@ -31,7 +31,7 @@
         <br />
         <br />
         Product<br />
-        ProdId<asp:TextBox ID="prodId" runat="server" ReadOnly="True"></asp:TextBox>
+        ProdId<asp:TextBox ID="prodId" runat="server"></asp:TextBox>
         ProdName<asp:TextBox ID="prodName" runat="server"></asp:TextBox>
         Price<asp:TextBox ID="price" runat="server"></asp:TextBox>
         ProdWeight<asp:TextBox ID="prodWeight" runat="server"></asp:TextBox>
@@ -39,16 +39,16 @@
         <br />
         <br />
         Order<br />
-        OrderId<asp:TextBox ID="orderId" runat="server" ReadOnly="True"></asp:TextBox>
-        CustId<asp:TextBox ID="orderCustId" runat="server" ReadOnly="True"></asp:TextBox>
+        OrderId<asp:TextBox ID="orderId" runat="server"></asp:TextBox>
+        CustId<asp:TextBox ID="orderCustId" runat="server"></asp:TextBox>
         PoNumber<asp:TextBox ID="poNumber" runat="server" Height="22px" Width="128px"></asp:TextBox>
         OrderDate<asp:TextBox ID="orderDate" runat="server" Height="22px" Width="128px"></asp:TextBox>
         MM-DD-YY<br />
         <br />
         <br />
         Cart<br />
-        OrderId<asp:TextBox ID="cartOrderId" runat="server" ReadOnly="True"></asp:TextBox>
-        ProdId<asp:TextBox ID="TextBox1" runat="server" ReadOnly="True"></asp:TextBox>
+        OrderId<asp:TextBox ID="cartOrderId" runat="server"></asp:TextBox>
+        ProdId<asp:TextBox ID="cartProdId" runat="server"></asp:TextBox>
         Quantity<asp:TextBox ID="quantity" runat="server"></asp:TextBox>
         <br />
         <br />
