@@ -11,7 +11,7 @@ namespace ClientSite.Pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         protected void goBack_Click(object sender, EventArgs e)
@@ -21,7 +21,7 @@ namespace ClientSite.Pages
 
         protected void execute_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         protected void exit_Click(object sender, EventArgs e)

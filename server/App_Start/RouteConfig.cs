@@ -14,9 +14,31 @@ namespace server
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             RouteTable.Routes.MapRoute(
-                "CatchAllRoute",
+                "Get",
                 "service/{*values}",
-                new { controller = "Service", action = "CatchAll" }
+                new { controller = "Service", action = "Get" },
+                new { httpMethod = new HttpMethodConstraint("GET") }
+            );
+
+            RouteTable.Routes.MapRoute(
+                "Post",
+                "service/{*values}",
+                new { controller = "Service", action = "Post" },
+                new { httpMethod = new HttpMethodConstraint("POST") }
+            );
+
+            RouteTable.Routes.MapRoute(
+                "Put",
+                "service/{*values}",
+                new { controller = "Service", action = "Put" },
+                new { httpMethod = new HttpMethodConstraint("PUT") }
+            );
+
+            RouteTable.Routes.MapRoute(
+                "Delete",
+                "service/{*values}",
+                new { controller = "Service", action = "Delete" },
+                new { httpMethod = new HttpMethodConstraint("DELETE") }
             );
 
             routes.MapRoute(

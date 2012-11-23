@@ -1,127 +1,97 @@
-﻿using server.Sql;
+﻿using server.Models;
+using server.Sql;
+using shared;
+using shared.FormData;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Web;
+using System.Web.Http;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace server.Controllers
 {
     public class ServiceController : Controller
     {
-        private enum ParamType
-        {
-            None,
-            Table,
-            Column,
-            Value
-        }
-
-        private class TableQuery
-        {
-            private string TableName;
-            private string ColumnName;
-            private string Value;
-
-            public TableQuery(string tableName, string columnName, string value)
-            {
-                this.TableName = tableName;
-                this.ColumnName = columnName;
-                this.Value = value;
-            }
-
-            public override string ToString()
-            {
-                return String.Format("Table {0} Column {1} Value {2}", TableName, ColumnName, Value);
-            }
-        }
-
         //
         // GET: /Service/.*?/*
-        public string CatchAll(string[] values)
+        public JsonResult Get(string[] values)
         {
-            if (values == null)
+            try
             {
-                throw new Exception("No table/column/values given for GET");
-            }
-
-            values = values[0].Split('/');
-
-            using (var context = new SoaDataContext())
-            {
-                var tables = context.Mapping.GetTables();
-                var tableNames = from t in tables
-                                 select DbTools.CleanTableName(t.TableName);
-
-
-                var tableQueries = new List<TableQuery>();
-
-                var lastParamType = ParamType.None;
-                var tableName = "";
-                var columnName = "";
-                foreach (var value in values)
+                if (values == null)
                 {
-                    var expectingTable = (lastParamType == ParamType.None || lastParamType == ParamType.Value);
-                    if (expectingTable)
-                    {
-                        var isTableName = tableNames.Where(t => value == t).Count() > 0;
-                        if (isTableName)
-                        {
-                            tableName = tableNames.Where(t => value == t).FirstOrDefault();
-                            lastParamType = ParamType.Table;
-                        }
-                        else
-                        {
-                            throw new Exception(String.Format("Table {0} not found", value));
-                        }
-                    }
-                    else
-                    {
-                        var tableType = tables.Where(t => DbTools.CleanTableName(t.TableName) == tableName)
-                            .FirstOrDefault().GetType();
-
-                        var columns = context.Mapping.MappingSource
-                          .GetModel(typeof(SoaDataContext))
-                          .GetMetaType(typeof(Product))
-                          .DataMembers;
-
-                        var columnNames = from c in columns
-                                          select c.MappedName;
-
-
-                        if (lastParamType == ParamType.Table)
-                        {
-                            var isColumn = columnNames.Where(c => value == c).Count() > 0;
-                            if (isColumn)
-                            {
-                                // This is a column
-                                columnName = value;
-                                lastParamType = ParamType.Column;
-                            }
-                            else
-                            {
-                                throw new Exception(String.Format("Table {0} must be followed by a column", tableName));
-                            }
-                        }
-                        else if (lastParamType == ParamType.Column)
-                        {
-                            // This is a value
-
-                            tableQueries.Add(new TableQuery(tableName, columnName, value));
-                            tableName = "";
-                            columnName = "";
-                            lastParamType = ParamType.Value;
-                        }
-                        else
-                        {
-                            // This should never happen
-                            Debug.Assert(false);
-                        }
-                    }
+                    throw new Exception("No table/column/values given for GET");
                 }
 
-                return String.Join(",", tableQueries);
+                values = values[0].Split('/');
+
+
+                var queries = TableQuery.ListQueriesFromPath(values);
+
+                throw new Exception("Failure to return JsonResult");
+            }
+            catch (Exception ex)
+            {
+                return Json(new JsonError(ex), JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public JsonResult Delete(string[] values)
+        {
+            try
+            {
+                if (values == null)
+                {
+                    throw new Exception("No table/column/values given for DELETE");
+                }
+
+                values = values[0].Split('/');
+
+
+                var queries = TableQuery.ListQueriesFromPath(values);
+
+                throw new Exception("Failure to return JsonResult");
+            }
+            catch (Exception ex)
+            {
+                return Json(new JsonError(ex), JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public JsonResult Post([FromBody] string json)
+        {
+            try
+            {
+                var js = new JavaScriptSerializer();
+                var insert = js.Deserialize<Screen2Data>(json);
+
+                new DatabaseUpdate(insert).Insert();
+
+                return Json(new JsonSuccess("OK", "Successfully Inserted"));
+            }
+            catch (Exception)
+            {
+                return Json(new JsonError("Failure to insert"));
+            }
+        }
+
+        public JsonResult Put([FromBody] string json)
+        {
+            try
+            {
+                var js = new JavaScriptSerializer();
+                var update = js.Deserialize<Screen2Data>(json);
+
+                new DatabaseUpdate(update).Update();
+
+                return Json(new JsonSuccess("OK", "Successfully Updated"));
+            }
+            catch (Exception)
+            {
+                return Json(new JsonError("Failure to update"));
             }
         }
 
