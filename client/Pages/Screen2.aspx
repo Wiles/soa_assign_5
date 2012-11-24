@@ -14,7 +14,7 @@
         <br />
     
     </div>
-        <asp:CheckBox ID="generatePurchaseOrder" runat="server" Text="Generate Purchase Order (P.O.)" OnCheckedChanged="generatePurchaseOrder_CheckedChanged" />
+        <asp:CheckBox ID="generatePurchaseOrder" runat="server" Text="Generate Purchase Order (P.O.)" OnCheckedChanged="generatePurchaseOrder_CheckedChanged" Visible="False" />
         <br />
         <br />
         <br />

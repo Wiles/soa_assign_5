@@ -1,0 +1,26 @@
+﻿insert into customer(firstName, lastName, phoneNumber) values('Joe', 'Bzolay', '555-555-1212');
+insert into customer(firstName, lastName, phoneNumber) values('Nancy', 'Finklbaum', '555-235-4578');
+insert into customer(firstName, lastName, phoneNumber) values('Henry', 'Svitzinski', '555-326-8456');
+
+go
+
+insert into product(prodName, price, prodWeight, inStock) values('Grapple Grommet', 0.02, 0.005, 1);
+insert into product(prodName, price, prodWeight, inStock) values('Wandoozals', 2.35, 0.532, 1);
+insert into product(prodName, price, prodWeight, inStock) values('Kardoofals', 8.75, 5.650, 0);
+
+go
+
+insert into [order](custID, orderDate, poNumber) values(1, '09-15-11', 'GRAP-09-2011-001');
+insert into [order](custID, orderDate, poNumber) values(2, '09-30-11', 'GRAP-09-2011-056');
+insert into [order](custID, orderDate, poNumber) values(3, '05-10-11', '');
+
+go
+
+insert into cart(orderID, prodID, quantity) values(1, 1, 500);
+insert into cart(orderID, prodID, quantity) values(1, 2, 1000);
+insert into cart(orderID, prodID, quantity) values(2, 3, 10);
+insert into cart(orderID, prodID, quantity) values(3, 1, 75);
+insert into cart(orderID, prodID, quantity) values(3, 2, 15);
+insert into cart(orderID, prodID, quantity) values(3, 3, 5);
+
+go

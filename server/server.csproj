@@ -127,6 +127,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="Global.asax" />
+    <Content Include="Sql\DefaultData.txt" />
     <Content Include="Sql\SqlCreateScript.txt" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
