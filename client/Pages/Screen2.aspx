@@ -10,7 +10,7 @@
     <form id="form1" runat="server">
     <div>
     
-        <asp:Label ID="Label1" runat="server" Text="Insert some order"></asp:Label>
+        <asp:Label ID="headerLabel" runat="server" Text="Insert some order"></asp:Label>
         <br />
     
     </div>
@@ -18,6 +18,7 @@
         <br />
         <br />
         <br />
+        <asp:RadioButton ID="customerRadio" runat="server" GroupName="section" AutoPostBack="True" OnCheckedChanged="customerRadio_CheckedChanged" />
         Customer<br />
         <asp:Label ID="Label2" runat="server" Text="CustID"></asp:Label>
         <asp:TextBox ID="custId" runat="server" Width="173px" EnableTheming="True"></asp:TextBox>
@@ -30,6 +31,7 @@
         xxx-xxx-xxxx<br />
         <br />
         <br />
+        <asp:RadioButton ID="productRadio" runat="server" GroupName="section" AutoPostBack="True" OnCheckedChanged="productRadio_CheckedChanged" />
         Product<br />
         ProdId<asp:TextBox ID="prodId" runat="server"></asp:TextBox>
         ProdName<asp:TextBox ID="prodName" runat="server"></asp:TextBox>
@@ -38,6 +40,8 @@
 &nbsp;<asp:CheckBox ID="soldOut" runat="server" Text="Sold Out" />
         <br />
         <br />
+        <br />
+        <asp:RadioButton ID="orderRadio" runat="server" GroupName="section" AutoPostBack="True" OnCheckedChanged="orderRadio_CheckedChanged" />
         Order<br />
         OrderId<asp:TextBox ID="orderId" runat="server"></asp:TextBox>
         CustId<asp:TextBox ID="orderCustId" runat="server"></asp:TextBox>
@@ -46,6 +50,7 @@
         MM-DD-YY<br />
         <br />
         <br />
+        <asp:RadioButton ID="cartRadio" runat="server" GroupName="section" AutoPostBack="True" OnCheckedChanged="cartRadio_CheckedChanged" />
         Cart<br />
         OrderId<asp:TextBox ID="cartOrderId" runat="server"></asp:TextBox>
         ProdId<asp:TextBox ID="cartProdId" runat="server"></asp:TextBox>

@@ -22,13 +22,13 @@ namespace ClientSite.Pages {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// Label1 control.
+        /// headerLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label headerLabel;
         
         /// <summary>
         /// generatePurchaseOrder control.
@@ -38,6 +38,15 @@ namespace ClientSite.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox generatePurchaseOrder;
+        
+        /// <summary>
+        /// customerRadio control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton customerRadio;
         
         /// <summary>
         /// Label2 control.
@@ -112,6 +121,15 @@ namespace ClientSite.Pages {
         protected global::System.Web.UI.WebControls.TextBox phonenumber;
         
         /// <summary>
+        /// productRadio control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton productRadio;
+        
+        /// <summary>
         /// prodId control.
         /// </summary>
         /// <remarks>
@@ -157,6 +175,15 @@ namespace ClientSite.Pages {
         protected global::System.Web.UI.WebControls.CheckBox soldOut;
         
         /// <summary>
+        /// orderRadio control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton orderRadio;
+        
+        /// <summary>
         /// orderId control.
         /// </summary>
         /// <remarks>
@@ -191,6 +218,15 @@ namespace ClientSite.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox orderDate;
+        
+        /// <summary>
+        /// cartRadio control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton cartRadio;
         
         /// <summary>
         /// cartOrderId control.

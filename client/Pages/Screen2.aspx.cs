@@ -8,6 +8,7 @@ using System.Text;
 using System.Web;
 using System.Web.Script.Serialization;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 namespace ClientSite.Pages
@@ -29,6 +30,11 @@ namespace ClientSite.Pages
         {
             try
             {
+                if (Request.QueryString["type"] == null)
+                {
+                    throw new KeyNotFoundException();
+                }
+
                 var type = Request.QueryString["type"].ToLower();
                 switch (type)
                 {
@@ -51,6 +57,11 @@ namespace ClientSite.Pages
                 // Ignore...
             }
 
+            if (Page.IsPostBack)
+            {
+                return;
+            }
+
             SetupPage(RequestType);
         }
 
@@ -60,6 +71,13 @@ namespace ClientSite.Pages
             {
                 case PageType.Search:
                     {
+                        headerLabel.Text = "Search for some data!";
+
+                        customerRadio.Visible = false;
+                        productRadio.Visible = false;
+                        cartRadio.Visible = false;
+                        orderRadio.Visible = false;
+
                         custId.ReadOnly = true;
                         prodId.ReadOnly = true;
                         orderId.ReadOnly = true;
@@ -71,6 +89,8 @@ namespace ClientSite.Pages
                     }
                 case PageType.Insert:
                     {
+                        headerLabel.Text = "Insert some data!";
+
                         custId.ReadOnly = true;
                         prodId.ReadOnly = true;
                         orderId.ReadOnly = true;
@@ -81,11 +101,14 @@ namespace ClientSite.Pages
                     }
                 case PageType.Update:
                     {
-                        // Everything accessible on update page...
+                        headerLabel.Text = "Update some data!";
+                        // Everything is accessible on update page...
                         break;
                     }
                 case PageType.Delete:
                     {
+                        headerLabel.Text = "Delete some data!";
+
                         foreach (var control in this.Controls)
                         {
                             if (control is TextBox)
@@ -104,6 +127,11 @@ namespace ClientSite.Pages
 
                         break;
                     }
+            }
+
+            if (RequestType != PageType.Search)
+            {
+                customerRadio.Checked = true;
             }
         }
 
@@ -294,5 +322,85 @@ namespace ClientSite.Pages
 
         }
 
+        protected void customerRadio_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdateEnabledRows();
+        }
+
+        protected void productRadio_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdateEnabledRows();
+        }
+
+        protected void orderRadio_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdateEnabledRows();
+        }
+
+        protected void cartRadio_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdateEnabledRows();
+        }
+
+        private void DisableAllInputs()
+        {
+            foreach (var form in Controls)
+            {
+                if (form is HtmlForm)
+                {
+                    foreach (var control in ((HtmlForm)form).Controls)
+                    {
+                        if (control is TextBox)
+                        {
+                            var textbox = (TextBox)control;
+                            textbox.ReadOnly = true;
+                        }
+                    }
+                }
+            }
+
+            soldOut.Enabled = false;
+        }
+
+        private void UpdateEnabledRows()
+        {
+            if (this.RequestType == PageType.Search)
+            {
+                return;
+            }
+
+            if (customerRadio.Checked)
+            {
+                DisableAllInputs();
+                custId.ReadOnly = false;
+                firstname.ReadOnly = false;
+                lastname.ReadOnly = false;
+                phonenumber.ReadOnly = false;
+            }
+            else if (productRadio.Checked)
+            {
+                DisableAllInputs();
+                prodId.ReadOnly = false;
+                prodName.ReadOnly = false;
+                price.ReadOnly = false;
+                prodWeight.ReadOnly = false;
+                soldOut.Enabled = true;
+            }
+            else if (orderRadio.Checked)
+            {
+                DisableAllInputs();
+                orderCustId.ReadOnly = false;
+                orderId.ReadOnly = false;
+                poNumber.ReadOnly = false;
+                orderDate.ReadOnly = false;
+            }
+            else if (cartRadio.Checked)
+            {
+                DisableAllInputs();
+                cartOrderId.ReadOnly = false;
+                cartProdId.ReadOnly = false;
+                quantity.ReadOnly = false;
+            }
+        }
     }
 }
