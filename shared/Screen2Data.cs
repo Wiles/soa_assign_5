@@ -6,6 +6,7 @@ using System.Web;
 
 namespace shared.FormData
 {
+    
     public class Screen2Data
     {
         public int? Customer_CustID{ get; set; }
@@ -28,6 +29,23 @@ namespace shared.FormData
         public int? Cart_ProdID { get; set; }
         public int? Cart_Quantity { get; set; }
 
+        public static Screen2Data FromTableQueries(List<TableColumnValue> tcvs)
+        {
+            var data = new Screen2Data();
+            foreach (var tcv in tcvs)
+            {
+                var table = tcv.Table;
+                var column = tcv.Column[0].ToString().ToUpper() + tcv.Column.Substring(1);
+                var name = String.Format("{0}_{1}", table, column);
+                var value = tcv.Value;
+
+                var type = data.GetType();
+                type.GetProperty(name).SetValue(data, value);
+            }
+
+            return data;
+        }
+
         public string ToUrl()
         {
             var sb = new StringBuilder();
@@ -49,6 +67,20 @@ namespace shared.FormData
             }
 
             return sb.ToString();
+        }
+    }
+
+    public class TableColumnValue
+    {
+        public string Table;
+        public string Column;
+        public string Value;
+
+        public TableColumnValue(string table, string column, string value)
+        {
+            this.Table = table;
+            this.Column = column;
+            this.Value = value;
         }
     }
 }

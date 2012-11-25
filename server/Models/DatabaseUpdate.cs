@@ -188,6 +188,22 @@ namespace server.Models
                     // Soft delete
                     customer.deleted = (byte)1;
                 }
+
+                // Delete all the data for the customer
+                var orders = (from o in context.Orders
+                             where o.custID == customer.custID
+                             select o).ToArray();
+
+                foreach (var order in orders)
+                {
+                    // Delete all the carts for the orders
+                    foreach (var cart in order.Carts)
+                    {
+                        cart.deleted = (byte)1;
+                    }
+
+                    order.deleted = (byte)1;
+                }
             }
 
             if (Data.Order_OrderID != null)
@@ -206,6 +222,12 @@ namespace server.Models
                     // Soft delete
                     order.deleted = (byte)1;
                 }
+
+                // Delete all the carts for the orders
+                foreach (var cart in order.Carts)
+                {
+                    cart.deleted = (byte)1;
+                }
             }
 
             if (Data.Product_ProdID != null)
@@ -223,6 +245,12 @@ namespace server.Models
                 {
                     // Soft delete
                     product.deleted = (byte)1;
+                }
+
+                // Delete from carts from product
+                foreach (var cart in product.Carts)
+                {
+                    cart.deleted = (byte)1;
                 }
             }
 

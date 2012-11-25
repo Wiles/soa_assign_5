@@ -53,12 +53,11 @@ namespace server.Controllers
 
                 var queries = TableQuery.ListQueriesFromPath(values);
 
-                foreach (var query in queries)
-                {
-                    
-                }
+                var delete = Screen2Data.FromTableQueries(queries.Select(q => q.ToTableColumnValue()).ToList());
 
-                throw new Exception("Failure to return JsonResult");
+                new DatabaseUpdate(delete).Delete();
+
+                return Json(new JsonSuccess("OK", "Successfully Deleted"));
             }
             catch (Exception ex)
             {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using shared.FormData;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -8,22 +9,6 @@ namespace server.Sql
 {
     public class TableQuery
     {
-        private string TableName;
-        private string ColumnName;
-        private string Value;
-
-        public TableQuery(string tableName, string columnName, string value)
-        {
-            this.TableName = tableName;
-            this.ColumnName = columnName;
-            this.Value = value;
-        }
-
-        public override string ToString()
-        {
-            return String.Format("Table {0} Column {1} Value {2}", TableName, ColumnName, Value);
-        }
-
         private static Dictionary<string, Type> tableTypes = new Dictionary<string, Type>()
         {
             { "Product", typeof(Product)},
@@ -38,6 +23,27 @@ namespace server.Sql
             Table,
             Column,
             Value
+        }
+
+        private string TableName;
+        private string ColumnName;
+        private string Value;
+
+        public TableQuery(string tableName, string columnName, string value)
+        {
+            this.TableName = tableName;
+            this.ColumnName = columnName;
+            this.Value = value;
+        }
+
+        public TableColumnValue ToTableColumnValue()
+        {
+            return new TableColumnValue(TableName, ColumnName, Value);
+        }
+
+        public override string ToString()
+        {
+            return String.Format("Table {0} Column {1} Value {2}", TableName, ColumnName, Value);
         }
 
         public static List<TableQuery> ListQueriesFromPath(string[] values)
