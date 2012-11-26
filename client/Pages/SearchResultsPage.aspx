@@ -12,8 +12,12 @@
     
         Search Results<br />
         <br />
-        <asp:GridView ID="SearchGridView" runat="server">
-        </asp:GridView>
+        <asp:Label ID="Information" runat="server"></asp:Label>
+        <br />
+        <br />
+        <asp:Table ID="ResultsTable" runat="server">
+        </asp:Table>
+        <br />
         <br />
         <br />
         <br />

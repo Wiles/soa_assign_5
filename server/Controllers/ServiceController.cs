@@ -37,17 +37,24 @@ namespace server.Controllers
                     // Remove the purchase order item
                     values = values.Skip(1).ToArray();
                 }
+                else if (values[0].Equals("false", StringComparison.CurrentCultureIgnoreCase))
+                {
+                    purchaseOrder = false;
+                    // Remove the purchase order item
+                    values = values.Skip(1).ToArray();
+                }
 
                 var queries = TableQuery.ListQueriesFromPath(values);
                 var data = ServerServiceRequest.FromTableQueries(queries.Select(q => q.ToTableColumnValue()).ToList());
 
                 var searcher = new DatabaseSearch(data, purchaseOrder);
-                searcher.Search();
+                var results = searcher.Search();
 
-                throw new Exception("Failure to return JsonResult");
+                return Json(results, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
+                Logger.GetInstance().Write(ex);
                 return Json(new JsonError(ex), JsonRequestBehavior.AllowGet);
             }
         }
@@ -62,7 +69,6 @@ namespace server.Controllers
                 }
 
                 values = values[0].Split('/');
-
 
                 var queries = TableQuery.ListQueriesFromPath(values);
                 var data = ServerServiceRequest.FromTableQueries(queries.Select(q => q.ToTableColumnValue()).ToList());

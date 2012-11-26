@@ -10,7 +10,7 @@
 namespace ClientSite.Pages {
     
     
-    public partial class Screen3 {
+    public partial class PurchaseOrderPage {
         
         /// <summary>
         /// form1 control.

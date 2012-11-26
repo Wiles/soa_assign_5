@@ -9,8 +9,6 @@ namespace shared.FormData
     
     public class ServerServiceRequest
     {
-        public bool GenPurchaseOrder { get; set; }
-
         public int? Customer_CustID{ get; set; }
         public string Customer_FirstName { get; set; }
         public string Customer_LastName { get; set; }
@@ -19,7 +17,7 @@ namespace shared.FormData
         public int? Product_ProdID{ get; set; }
         public string Product_ProdName { get; set; }
         public double? Product_Price { get; set; }
-        public int? Product_ProdWeight { get; set; }
+        public double? Product_ProdWeight { get; set; }
         public byte? Product_InStock { get; set; }
 
         public int? Order_OrderID{ get; set; }
@@ -33,7 +31,6 @@ namespace shared.FormData
 
         public ServerServiceRequest()
         {
-            GenPurchaseOrder = false;
         }
 
         public static ServerServiceRequest FromTableQueries(List<TableColumnValue> tcvs)
@@ -119,7 +116,7 @@ namespace shared.FormData
             }
 
             // Remove the last '/'
-            var suffix = (withGeneratePurchaseOrder) ? (GenPurchaseOrder.ToString() + '/') : "";
+            var suffix = (withGeneratePurchaseOrder) ? (withGeneratePurchaseOrder.ToString() + '/') : "";
             return suffix + sb.ToString().TrimEnd('/');
         }
 

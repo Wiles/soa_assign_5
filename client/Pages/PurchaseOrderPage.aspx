@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PurchaseOrderPage.aspx.cs" Inherits="ClientSite.Pages.Screen3" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PurchaseOrderPage.aspx.cs" Inherits="ClientSite.Pages.PurchaseOrderPage" %>
 
 <!DOCTYPE html>
 

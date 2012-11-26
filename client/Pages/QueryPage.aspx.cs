@@ -4,11 +4,13 @@ using shared;
 using shared.FormData;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Script.Serialization;
@@ -35,6 +37,8 @@ namespace ClientSite.Pages
         /// This content is the response from the search query to the RESTFul search service
         /// </summary>
         public string SearchContent = "";
+
+        public SearchResult SearchResult;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -67,11 +71,11 @@ namespace ClientSite.Pages
             if (!Page.IsPostBack)
             {
                 // Only perform on first page load
-                SetupPage(RequestType);
+                SetupPage(RequestType, true);
             }
         }
 
-        private void SetupPage(PageType type)
+        private void SetupPage(PageType type, bool first = false)
         {
             switch (type)
             {
@@ -107,7 +111,7 @@ namespace ClientSite.Pages
                     }
             }
 
-            if (RequestType != PageType.Search)
+            if (RequestType != PageType.Search && first)
             {
                 customerRadio.Checked = true;
             }
@@ -237,21 +241,21 @@ namespace ClientSite.Pages
             }
 
             // Make sure that the user has not selected both customers and products
-            var hasCustomerField = (data.Customer_CustID != null &&
-                data.Customer_FirstName != null &&
-                data.Customer_LastName != null &&
+            var hasCustomerField = (data.Customer_CustID != null ||
+                data.Customer_FirstName != null ||
+                data.Customer_LastName != null ||
                 data.Customer_PhoneNumber != null);
 
-            var hasProductField = (data.Product_ProdID != null &&
-                data.Product_ProdName != null &&
-                data.Product_ProdWeight != null &&
+            var hasProductField = (data.Product_ProdID != null ||
+                data.Product_ProdName != null ||
+                data.Product_ProdWeight != null ||
                 data.Product_Price != null
                 // Ignore the instock field...
             );
 
             if (hasCustomerField && hasProductField)
             {
-                AppendClientError("Cannot have <b>both</b> customer and product sections filled");
+                AppendClientError("Cannot have <b>both</b> customer and product fields filled");
                 return;
             }
 
@@ -274,10 +278,20 @@ Customer firstName, Order orderID, Order poNumber or Order orderDate when 'Gener
                 return;
             }
 
+            DateTime parsed;
+
             // Check maximum lengths, because Linq to SQL generates crappy messages on the server end
-            if (true)
+            var re = new Regex(@"(\d{3})-(\d{3})-(\d{4})");
+            if (data.Customer_PhoneNumber != null && re.Match(data.Customer_PhoneNumber).Groups.Count <= 0)
             {
-                
+                AppendClientError("Please use the following format on phone numbers (xxx-xxx-xxxx)");
+                return;
+            }
+            else if (data.Order_OrderDate != null && !DateTime.TryParseExact(data.Order_OrderDate, "MM-DD-YY",
+                CultureInfo.CurrentCulture, DateTimeStyles.None, out parsed))
+            {
+                AppendClientError("Please use the following format for order dates (MM-DD-YY) and proper dates");
+                return;
             }
 
             switch (RequestType)
@@ -288,19 +302,36 @@ Customer firstName, Order orderID, Order poNumber or Order orderDate when 'Gener
                         
                         var url = new Uri(ClientConfiguration.ServerUrl.ToString() + data.ToUrl(purchaseOrder));
                         var client = HttpWebRequest.Create(url);
+                        client.Method = "GET";
 
                         using (var responseStream = client.GetResponse().GetResponseStream())
                         using (var reader = new StreamReader(responseStream))
                         {
                             SearchContent = reader.ReadToEnd();
 
-                            if (purchaseOrder)
+                            try
                             {
-                                Server.Transfer("/Pages/PurchaseOrderPage.aspx");
+                                var js = new JavaScriptSerializer();
+                                var result = js.Deserialize<SearchResult>(SearchContent);
+
+                                SearchResult = result;
+
+                                if (purchaseOrder)
+                                {
+                                    Server.Transfer("/Pages/PurchaseOrderPage.aspx");
+                                }
+                                else
+                                {
+                                    Server.Transfer("/Pages/SearchResultsPage.aspx");
+                                }
                             }
-                            else
+                            catch (Exception)
                             {
-                                Server.Transfer("/Pages/SearchResultsPage.aspx");
+                                // Check if we have a Json Error
+                                var js = new JavaScriptSerializer();
+                                var error = js.Deserialize<JsonError>(SearchContent);
+
+                                AppendServerError(error.Message);
                             }
                         }
 
@@ -482,6 +513,8 @@ Customer firstName, Order orderID, Order poNumber or Order orderDate when 'Gener
                 CartProdId.ReadOnly = false;
                 Quantity.ReadOnly = false;
             }
+
+            SetupPage(RequestType);
         }
 
 

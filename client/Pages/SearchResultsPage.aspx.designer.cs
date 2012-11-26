@@ -22,13 +22,22 @@ namespace ClientSite.Pages {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// SearchGridView control.
+        /// Information control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView SearchGridView;
+        protected global::System.Web.UI.WebControls.Label Information;
+        
+        /// <summary>
+        /// ResultsTable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Table ResultsTable;
         
         /// <summary>
         /// GoBack control.

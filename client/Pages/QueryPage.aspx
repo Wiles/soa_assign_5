@@ -41,7 +41,7 @@
         <br />
         <asp:RadioButton ID="productRadio" runat="server" GroupName="section" AutoPostBack="True" OnCheckedChanged="productRadio_CheckedChanged" />
         Product<br />
-        ProdId<asp:TextBox ID="ProdId" runat="server"></asp:TextBox>
+        ProdID<asp:TextBox ID="ProdId" runat="server"></asp:TextBox>
         ProdName<asp:TextBox ID="ProdName" runat="server"></asp:TextBox>
         Price<asp:TextBox ID="Price" runat="server"></asp:TextBox>
         ProdWeight<asp:TextBox ID="ProdWeight" runat="server"></asp:TextBox>
@@ -51,7 +51,7 @@
         <br />
         <asp:RadioButton ID="orderRadio" runat="server" GroupName="section" AutoPostBack="True" OnCheckedChanged="orderRadio_CheckedChanged" />
         Order<br />
-        OrderId<asp:TextBox ID="OrderId" runat="server"></asp:TextBox>
+        OrderID<asp:TextBox ID="OrderId" runat="server"></asp:TextBox>
         CustId<asp:TextBox ID="OrderCustId" runat="server"></asp:TextBox>
         PoNumber<asp:TextBox ID="PoNumber" runat="server" Height="22px" Width="128px"></asp:TextBox>
         OrderDate<asp:TextBox ID="OrderDate" runat="server" Height="22px" Width="128px"></asp:TextBox>
@@ -60,7 +60,7 @@
         <br />
         <asp:RadioButton ID="cartRadio" runat="server" GroupName="section" AutoPostBack="True" OnCheckedChanged="cartRadio_CheckedChanged" />
         Cart<br />
-        OrderId<asp:TextBox ID="CartOrderId" runat="server"></asp:TextBox>
+        OrderID<asp:TextBox ID="CartOrderId" runat="server"></asp:TextBox>
         ProdId<asp:TextBox ID="CartProdId" runat="server"></asp:TextBox>
         Quantity<asp:TextBox ID="Quantity" runat="server"></asp:TextBox>
         <br />

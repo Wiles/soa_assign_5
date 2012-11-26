@@ -16,7 +16,7 @@ namespace shared
         {
             if (instance == null)
             {
-                var name = Assembly.GetExecutingAssembly().GetName().Name;
+                var name = Assembly.GetExecutingAssembly().FullName;
                 instance = new Logger(String.Format(@"C:\temp\log_{0}.txt", name));
             }
 

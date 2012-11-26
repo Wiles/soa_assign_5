@@ -1,4 +1,5 @@
-﻿using System;
+﻿using shared.FormData;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,9 @@ namespace shared
 {
     public class SearchResult
     {
+        public List<string> Columns;
+        public List<ServerServiceRequest> Rows { get; set; }
+
         public int CustID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -23,8 +27,11 @@ namespace shared
         public int TotalNumberOfPieces { get; set; }
         public double TotalWeight { get; set; }
 
-        public string CustomerInformation { get; set; }
-        public List<string> columns;
-        public List<List<string>> rows;
+
+        public SearchResult()
+        {
+            Columns = new List<string>();
+            Rows = new List<ServerServiceRequest>();
+        }
     }
 }
