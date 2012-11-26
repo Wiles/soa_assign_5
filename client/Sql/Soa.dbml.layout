@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="Soa5Data">
+  <DataContextMoniker Name="/SoaDataContext" />
+  <nestedChildShapes>
+    <classShape Id="990bb8b5-8307-4ecf-996b-f4a4ee55f26a" absoluteBounds="6.25, 1, 2, 1.5785953776041664">
+      <DataClassMoniker Name="/SoaDataContext/Cart" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a52ec678-e5e8-4f53-8e96-ed3b4ba109fc" absoluteBounds="6.265, 1.46, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="4a4ed0f6-3985-43ec-ad7a-a28619ec532c" absoluteBounds="3.5, 3.875, 2, 1.9631982421875005">
+      <DataClassMoniker Name="/SoaDataContext/Product" />
+      <nestedChildShapes>
+        <elementListCompartment Id="41f47f45-3854-49f4-9063-940d4df10822" absoluteBounds="3.515, 4.335, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="03ed57ba-896c-4bbc-bf82-63386eae53ab" absoluteBounds="0.75, 0.875, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/SoaDataContext/Customer" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b05f3eae-dba9-4533-a9ca-83c3baee4ad8" absoluteBounds="0.765, 1.335, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="4a13443d-4baf-4572-9e46-6ab4330bfe0d" absoluteBounds="3.5, 0.875, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/SoaDataContext/Order" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f4d10100-760b-4121-8950-3cd6c1d8320b" absoluteBounds="3.515, 1.335, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.5 : 4.85659912109375); (7.25 : 4.85659912109375); (7.25 : 2.57859537760417)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SoaDataContext/Product/Product_Cart" />
+      <nodes>
+        <classShapeMoniker Id="4a4ed0f6-3985-43ec-ad7a-a28619ec532c" />
+        <classShapeMoniker Id="990bb8b5-8307-4ecf-996b-f4a4ee55f26a" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 1.78929768880208); (6.25 : 1.78929768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SoaDataContext/Order/Order_Cart" />
+      <nodes>
+        <classShapeMoniker Id="4a13443d-4baf-4572-9e46-6ab4330bfe0d" />
+        <classShapeMoniker Id="990bb8b5-8307-4ecf-996b-f4a4ee55f26a" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 1.76044840494792); (3.5 : 1.76044840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SoaDataContext/Customer/Customer_Order" />
+      <nodes>
+        <classShapeMoniker Id="03ed57ba-896c-4bbc-bf82-63386eae53ab" />
+        <classShapeMoniker Id="4a13443d-4baf-4572-9e46-6ab4330bfe0d" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

@@ -7,11 +7,13 @@ using System.Web;
 namespace shared.FormData
 {
     
-    public class Screen2Data
+    public class ServerServiceRequest
     {
+        public bool GenPurchaseOrder { get; set; }
+
         public int? Customer_CustID{ get; set; }
-        public string Customer_Firstname { get; set; }
-        public string Customer_Lastname { get; set; }
+        public string Customer_FirstName { get; set; }
+        public string Customer_LastName { get; set; }
         public string Customer_PhoneNumber { get; set; }
 
         public int? Product_ProdID{ get; set; }
@@ -29,18 +31,28 @@ namespace shared.FormData
         public int? Cart_ProdID { get; set; }
         public int? Cart_Quantity { get; set; }
 
-        public static Screen2Data FromTableQueries(List<TableColumnValue> tcvs)
+        public ServerServiceRequest()
         {
-            var data = new Screen2Data();
+            GenPurchaseOrder = false;
+        }
+
+        public static ServerServiceRequest FromTableQueries(List<TableColumnValue> tcvs)
+        {
+            var data = new ServerServiceRequest();
             foreach (var tcv in tcvs)
             {
+
                 var table = tcv.Table;
                 var column = tcv.Column[0].ToString().ToUpper() + tcv.Column.Substring(1);
                 var name = String.Format("{0}_{1}", table, column);
-                var value = tcv.Value;
 
-                var type = data.GetType();
-                type.GetProperty(name).SetValue(data, value);
+                if (!IgnoreProperty(name))
+                {
+                    var value = tcv.Value;
+
+                    var type = data.GetType();
+                    type.GetProperty(name).SetValue(data, value, null);
+                }
             }
 
             return data;
@@ -52,21 +64,32 @@ namespace shared.FormData
             var props = this.GetType().GetProperties();
             foreach (var prop in props)
             {
-                var value = prop.GetValue(this);
-                if (value != null)
+                if (!IgnoreProperty(prop.Name))
                 {
-                    var fullname = prop.Name[0].ToString().ToLower() + prop.Name.Substring(1);
-                    var table = fullname.Split('_')[0];
-                    var column = fullname.Split('_')[1];
-                    sb.Append(table);
-                    sb.Append("/");
-                    sb.Append(column);
-                    sb.Append("/");
-                    sb.Append(value.ToString());
+                    var value = prop.GetValue(this, null);
+                    if (value != null)
+                    {
+                        var name = prop.Name;
+                        var table = name.Split('_')[0];
+                        var column = name.Split('_')[1];
+                        var columnName = column[0].ToString().ToLower() + column.Substring(1);
+                        sb.Append(table);
+                        sb.Append("/");
+                        sb.Append(columnName);
+                        sb.Append("/");
+                        sb.Append(value.ToString());
+                        sb.Append("/");
+                    } 
                 }
             }
 
-            return sb.ToString();
+            // Remove the last '/'
+            return sb.ToString().TrimEnd('/');
+        }
+
+        private static bool IgnoreProperty(string name)
+        {
+            return name.Equals("GenPurchaseOrder", StringComparison.CurrentCultureIgnoreCase);
         }
     }
 

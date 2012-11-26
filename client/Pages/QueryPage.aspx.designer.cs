@@ -10,7 +10,7 @@
 namespace ClientSite.Pages {
     
     
-    public partial class InsertPage {
+    public partial class QueryPage {
         
         /// <summary>
         /// form1 control.
@@ -29,6 +29,24 @@ namespace ClientSite.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label headerLabel;
+        
+        /// <summary>
+        /// ClientErrors control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ClientErrors;
+        
+        /// <summary>
+        /// ServerErrors control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ServerErrors;
         
         /// <summary>
         /// generatePurchaseOrder control.

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Screen2.aspx.cs" Inherits="ClientSite.Pages.InsertPage" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="QueryPage.aspx.cs" Inherits="ClientSite.Pages.QueryPage" %>
 
 <!DOCTYPE html>
 
@@ -12,9 +12,17 @@
     
         <asp:Label ID="headerLabel" runat="server" Text="Insert some order"></asp:Label>
         <br />
+        <br />
+        <asp:Label ID="ClientErrors" runat="server" Text="Client Errors&lt;br&gt;..."></asp:Label>
+        <br />
+        <br />
+        <asp:Label ID="ServerErrors" runat="server" Text="Service Errors&lt;br&gt;..."></asp:Label>
+        <br />
+        <br />
+        <br />
     
     </div>
-        <asp:CheckBox ID="generatePurchaseOrder" runat="server" Text="Generate Purchase Order (P.O.)" OnCheckedChanged="generatePurchaseOrder_CheckedChanged" Visible="False" />
+        <asp:CheckBox ID="generatePurchaseOrder" runat="server" Text="Generate Purchase Order (P.O.)" OnCheckedChanged="generatePurchaseOrder_CheckedChanged" Visible="False" AutoPostBack="True" />
         <br />
         <br />
         <br />

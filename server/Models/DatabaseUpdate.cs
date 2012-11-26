@@ -9,8 +9,8 @@ namespace server.Models
 {
     public class DatabaseUpdate
     {
-        private Screen2Data Data;
-        public DatabaseUpdate(Screen2Data data)
+        private ServerServiceRequest Data;
+        public DatabaseUpdate(ServerServiceRequest data)
         {
             this.Data = data;
         }
@@ -19,11 +19,11 @@ namespace server.Models
         {
             var context = new SoaDataContext();
             Customer customer = null;
-            if (Data.Customer_Lastname != null)
+            if (Data.Customer_LastName != null)
             {
                 customer = new Customer();
-                customer.firstName = Data.Customer_Firstname;
-                customer.lastName = Data.Customer_Lastname;
+                customer.firstName = Data.Customer_FirstName;
+                customer.lastName = Data.Customer_LastName;
                 customer.phoneNumber = Data.Customer_PhoneNumber;
 
                 context.Customers.InsertOnSubmit(customer);
@@ -94,14 +94,14 @@ namespace server.Models
 
                 if (customer == null)
                 {
-                    throw new Exception(String.Format("Customer does not exist with ID {0}", Data.Customer_CustID));
+                    throw new Exception(String.Format("Customer with ID {0} does not exist", Data.Customer_CustID));
                 }
                 else
                 {
                     // Update with new fields
-                    customer.firstName = Data.Customer_Firstname;
-                    customer.lastName = Data.Customer_Lastname;
-                    customer.firstName = Data.Customer_Firstname;
+                    customer.firstName = Data.Customer_FirstName;
+                    customer.lastName = Data.Customer_LastName;
+                    customer.firstName = Data.Customer_FirstName;
                     customer.phoneNumber = Data.Customer_PhoneNumber;
                 }
             }
@@ -115,7 +115,7 @@ namespace server.Models
 
                 if (order == null)
                 {
-                    throw new Exception(String.Format("Order does not exist with ID {0}", Data.Order_OrderID));
+                    throw new Exception(String.Format("Order with ID {0} does not exist", Data.Order_OrderID));
                 }
                 else
                 {
@@ -135,7 +135,7 @@ namespace server.Models
 
                 if (product == null)
                 {
-                    throw new Exception(String.Format("Product does not exist with ID {0}", Data.Product_ProdID));
+                    throw new Exception(String.Format("Product with ID {0} does not exist", Data.Product_ProdID));
                 }
                 else
                 {
@@ -156,7 +156,7 @@ namespace server.Models
 
                 if (cart == null)
                 {
-                    throw new Exception(String.Format("Cart does not exist with ProdID {0} and OrderID {1}", 
+                    throw new Exception(String.Format("Cart with ProdID {0} and OrderID {1} does not exist", 
                         Data.Cart_ProdID, Data.Cart_OrderID));
                 }
                 else
@@ -181,7 +181,7 @@ namespace server.Models
 
                 if (customer == null)
                 {
-                    throw new Exception(String.Format("Customer does not exist with ID {0}", Data.Customer_CustID));
+                    throw new Exception(String.Format("Customer with ID {0} does not exist", Data.Customer_CustID));
                 }
                 else
                 {
@@ -215,7 +215,7 @@ namespace server.Models
 
                 if (order == null)
                 {
-                    throw new Exception(String.Format("Order does not exist with ID {0}", Data.Order_OrderID));
+                    throw new Exception(String.Format("Order with ID {0} does not exist", Data.Order_OrderID));
                 }
                 else
                 {
@@ -239,7 +239,7 @@ namespace server.Models
 
                 if (product == null)
                 {
-                    throw new Exception(String.Format("Product does not exist with ID {0}", Data.Product_ProdID));
+                    throw new Exception(String.Format("Product with ID {0} does not exist", Data.Product_ProdID));
                 }
                 else
                 {
@@ -263,7 +263,7 @@ namespace server.Models
 
                 if (cart == null)
                 {
-                    throw new Exception(String.Format("Cart does not exist with ProdID {0} and OrderID {1}",
+                    throw new Exception(String.Format("Cart with ProdID {0} and OrderID {1} does not exist",
                         Data.Cart_ProdID, Data.Cart_OrderID));
                 }
                 else

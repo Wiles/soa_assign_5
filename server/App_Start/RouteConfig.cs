@@ -22,14 +22,14 @@ namespace server
 
             RouteTable.Routes.MapRoute(
                 "Post",
-                "service/{*values}",
+                "service",
                 new { controller = "Service", action = "Post" },
                 new { httpMethod = new HttpMethodConstraint("POST") }
             );
 
             RouteTable.Routes.MapRoute(
                 "Put",
-                "service/{*values}",
+                "service",
                 new { controller = "Service", action = "Put" },
                 new { httpMethod = new HttpMethodConstraint("PUT") }
             );
