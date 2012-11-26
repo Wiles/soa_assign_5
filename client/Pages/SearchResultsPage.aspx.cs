@@ -1,4 +1,5 @@
-﻿using shared;
+﻿using ClientSite.Logic;
+using shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -107,7 +108,7 @@ namespace ClientSite.Pages
         {
             try
             {
-                Response.Redirect("http://www.google.ca");
+                Response.Redirect(Constants.HomePage);
             }
             catch (Exception ex)
             {

@@ -167,7 +167,7 @@ namespace ClientSite.Pages
 
         protected void Exit_Click(object sender, EventArgs e)
         {
-            Response.Redirect("http://www.google.ca");
+            Response.Redirect(Constants.HomePage);
         }
 
         protected void CustomerDropDown_DataBound(object sender, EventArgs e)

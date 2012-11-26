@@ -211,6 +211,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Logic\Configuration.cs" />
+    <Compile Include="Logic\Constants.cs" />
     <Compile Include="Pages\DeletePage.aspx.cs">
       <DependentUpon>DeletePage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

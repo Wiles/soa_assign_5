@@ -121,7 +121,7 @@ namespace shared.FormData
         }
 
         /// <summary>
-        /// Self DocumentingMethodNameThatTellsYouEverythingABoutItBecauseItsUltraAmazingWeShouldAllWriteLikeThisBecauseItsGood
+        /// Self DocumentingMethodNameThatTellsYouEverythingAboutItBecauseItsUltraAmazingWeShouldAllWriteLikeThisBecauseItsGood
         /// </summary>
         /// <returns>Is this at least one non-null property in this object</returns>
         public bool HasOneOrMoreFieldsWithAValue()

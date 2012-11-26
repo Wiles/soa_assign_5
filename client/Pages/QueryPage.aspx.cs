@@ -98,9 +98,6 @@ namespace ClientSite.Pages
                         CustId.ReadOnly = true;
                         ProdId.ReadOnly = true;
                         OrderId.ReadOnly = true;
-                        OrderCustId.ReadOnly = true;
-                        CartOrderId.ReadOnly = true;
-                        CartProdId.ReadOnly = true;
                         break;
                     }
                 case PageType.Update:
@@ -129,110 +126,7 @@ namespace ClientSite.Pages
 
             // Populate data for service call
             var data = new ServerServiceRequest();
-
-            // Customers
-            try
-            {
-                data.Customer_CustID = (String.IsNullOrWhiteSpace(CustId.Text)) ? null : (int?)int.Parse(CustId.Text);
-            }
-            catch (Exception)
-            {
-                AppendClientError("Please enter a number into Customer custID");
-            }
-
-            data.Customer_FirstName = (String.IsNullOrWhiteSpace(FirstName.Text)) ? null : FirstName.Text;
-            data.Customer_LastName = (String.IsNullOrWhiteSpace(LastName.Text)) ? null : LastName.Text;
-            data.Customer_PhoneNumber = (String.IsNullOrWhiteSpace(Phonenumber.Text)) ? null : Phonenumber.Text;
-
-            // Orders
-            try
-            {
-                data.Order_CustID = (String.IsNullOrWhiteSpace(OrderCustId.Text)) ? null : (int?)int.Parse(OrderCustId.Text);
-            }
-            catch (Exception)
-            {
-                AppendClientError("Please enter a number into the Order custID");
-            }
-
-            try
-            {
-                data.Order_OrderID = (String.IsNullOrWhiteSpace(OrderId.Text)) ? null : (int?)int.Parse(OrderId.Text);
-            }
-            catch (Exception)
-            {
-                AppendClientError("Please enter a number into Order orderID");
-            }
-
-            data.Order_OrderDate = (String.IsNullOrWhiteSpace(OrderDate.Text)) ? null : OrderDate.Text;
-            data.Order_PoNumber = (String.IsNullOrWhiteSpace(PoNumber.Text)) ? null : PoNumber.Text;
-
-            // Products
-            try
-            {
-                data.Product_ProdID = (String.IsNullOrWhiteSpace(ProdId.Text)) ? null : (int?)int.Parse(ProdId.Text);
-            }
-            catch (Exception)
-            {
-                AppendClientError("Please enter a number into Product prodID");
-            }
-
-            try
-            {
-                data.Product_Price = (String.IsNullOrWhiteSpace(Price.Text)) ? null : (double?)double.Parse(Price.Text);
-            }
-            catch (Exception)
-            {
-                AppendClientError("Please enter a number into Product price");
-            }
-
-            try
-            {
-                data.Product_ProdWeight = (String.IsNullOrWhiteSpace(ProdWeight.Text)) ? null : (int?)int.Parse(ProdWeight.Text);
-            }
-            catch (Exception)
-            {
-                AppendClientError("Please enter a number into Product prodWeight");
-            }
-
-            if (RequestType != PageType.Search)
-            {
-                data.Product_InStock = (SoldOut.Checked) ? (byte)0 : (byte)1;
-            }
-            else
-            {
-                // Ignore the instock field when performing search
-                data.Product_InStock = null;
-            }
-
-            data.Product_ProdName = (String.IsNullOrWhiteSpace(ProdName.Text)) ? null : ProdName.Text;
-
-            // Carts
-            try
-            {
-                data.Cart_OrderID = (String.IsNullOrWhiteSpace(CartOrderId.Text)) ? null : (int?)int.Parse(CartOrderId.Text);
-            }
-            catch (Exception)
-            {
-                AppendClientError("Please enter a number into Cart orderID");
-            }
-
-            try
-            {
-                data.Cart_ProdID = (String.IsNullOrWhiteSpace(CartProdId.Text)) ? null : (int?)int.Parse(CartProdId.Text);
-            }
-            catch (Exception)
-            {
-                AppendClientError("Please enter a number into Cart prodID");
-            }
-
-            try
-            {
-                data.Cart_Quantity = (String.IsNullOrWhiteSpace(Quantity.Text)) ? null : (int?)int.Parse(Quantity.Text);
-            }
-            catch (Exception)
-            {
-                AppendClientError("Please enter a number into Cart quantity");
-            }
+            PopulateFields(data);
 
             // Bail out, if we have errors
             if (HasClientErrors())
@@ -294,12 +188,21 @@ Customer firstName, Order orderID, Order poNumber or Order orderDate when 'Gener
                 return;
             }
 
+
+            if (RequestType == PageType.Insert)
+            {
+                if (!EnforceRequiredInsertFieldsFilled(data))
+                {
+                    return;
+                }
+            }
+
             switch (RequestType)
             {
                 case PageType.Search:
                     {
                         var purchaseOrder = GeneratePurchaseOrder.Checked;
-                        
+
                         var url = new Uri(ClientConfiguration.ServerUrl.ToString() + data.ToUrl(purchaseOrder));
                         var client = HttpWebRequest.Create(url);
                         client.Method = "GET";
@@ -411,9 +314,192 @@ Customer firstName, Order orderID, Order poNumber or Order orderDate when 'Gener
             }
         }
 
+        private void PopulateFields(ServerServiceRequest data)
+        {
+
+            // Customers
+            try
+            {
+                data.Customer_CustID = (String.IsNullOrWhiteSpace(CustId.Text)) ? null : (int?)int.Parse(CustId.Text);
+            }
+            catch (Exception)
+            {
+                AppendClientError("Please enter a number into Customer custID");
+            }
+
+            data.Customer_FirstName = (String.IsNullOrWhiteSpace(FirstName.Text)) ? null : FirstName.Text;
+            data.Customer_LastName = (String.IsNullOrWhiteSpace(LastName.Text)) ? null : LastName.Text;
+            data.Customer_PhoneNumber = (String.IsNullOrWhiteSpace(Phonenumber.Text)) ? null : Phonenumber.Text;
+
+            // Orders
+            try
+            {
+                data.Order_CustID = (String.IsNullOrWhiteSpace(OrderCustId.Text)) ? null : (int?)int.Parse(OrderCustId.Text);
+            }
+            catch (Exception)
+            {
+                AppendClientError("Please enter a number into the Order custID");
+            }
+
+            try
+            {
+                data.Order_OrderID = (String.IsNullOrWhiteSpace(OrderId.Text)) ? null : (int?)int.Parse(OrderId.Text);
+            }
+            catch (Exception)
+            {
+                AppendClientError("Please enter a number into Order orderID");
+            }
+
+            data.Order_OrderDate = (String.IsNullOrWhiteSpace(OrderDate.Text)) ? null : OrderDate.Text;
+            data.Order_PoNumber = (String.IsNullOrWhiteSpace(PoNumber.Text)) ? null : PoNumber.Text;
+
+            // Products
+            try
+            {
+                data.Product_ProdID = (String.IsNullOrWhiteSpace(ProdId.Text)) ? null : (int?)int.Parse(ProdId.Text);
+            }
+            catch (Exception)
+            {
+                AppendClientError("Please enter a number into Product prodID");
+            }
+
+            try
+            {
+                data.Product_Price = (String.IsNullOrWhiteSpace(Price.Text)) ? null : (double?)double.Parse(Price.Text);
+            }
+            catch (Exception)
+            {
+                AppendClientError("Please enter a number into Product price");
+            }
+
+            try
+            {
+                data.Product_ProdWeight = (String.IsNullOrWhiteSpace(ProdWeight.Text)) ? null : (int?)int.Parse(ProdWeight.Text);
+            }
+            catch (Exception)
+            {
+                AppendClientError("Please enter a number into Product prodWeight");
+            }
+
+            if (RequestType != PageType.Search)
+            {
+                data.Product_InStock = (SoldOut.Checked) ? (byte)0 : (byte)1;
+            }
+            else
+            {
+                // Ignore the instock field when performing search
+                data.Product_InStock = null;
+            }
+
+            data.Product_ProdName = (String.IsNullOrWhiteSpace(ProdName.Text)) ? null : ProdName.Text;
+
+            // Carts
+            try
+            {
+                data.Cart_OrderID = (String.IsNullOrWhiteSpace(CartOrderId.Text)) ? null : (int?)int.Parse(CartOrderId.Text);
+            }
+            catch (Exception)
+            {
+                AppendClientError("Please enter a number into Cart orderID");
+            }
+
+            try
+            {
+                data.Cart_ProdID = (String.IsNullOrWhiteSpace(CartProdId.Text)) ? null : (int?)int.Parse(CartProdId.Text);
+            }
+            catch (Exception)
+            {
+                AppendClientError("Please enter a number into Cart prodID");
+            }
+
+            try
+            {
+                data.Cart_Quantity = (String.IsNullOrWhiteSpace(Quantity.Text)) ? null : (int?)int.Parse(Quantity.Text);
+            }
+            catch (Exception)
+            {
+                AppendClientError("Please enter a number into Cart quantity");
+            }
+        }
+
+        private bool EnforceRequiredInsertFieldsFilled(ServerServiceRequest data)
+        {
+            bool missingMandatoryField = false;
+            if (customerRadio.Checked)
+            {
+                if (data.Customer_LastName == null)
+                {
+                    AppendClientError("Customer must have a lastName");
+                    missingMandatoryField = true;
+                }
+
+                if (data.Customer_PhoneNumber == null)
+                {
+                    AppendClientError("Customer must have a phoneNumber");
+                    missingMandatoryField = true;
+                }
+            }
+            else if (productRadio.Checked)
+            {
+                if (data.Product_ProdName == null)
+                {
+                    AppendClientError("Product must have a prodName");
+                    missingMandatoryField = true;
+                }
+
+                if (data.Product_Price == null)
+                {
+                    AppendClientError("Product must have a price");
+                    missingMandatoryField = true;
+                }
+
+                if (data.Product_ProdWeight == null)
+                {
+                    AppendClientError("Product must have a prodWeight");
+                    missingMandatoryField = true;
+                }
+            }
+            else if (orderRadio.Checked)
+            {
+                if (data.Order_CustID == null)
+                {
+                    AppendClientError("Order must have a custID");
+                    missingMandatoryField = true;
+                }
+
+                if (data.Order_OrderDate == null)
+                {
+                    AppendClientError("Order must have a orderDate");
+                    missingMandatoryField = true;
+                }
+            }
+            else if (cartRadio.Checked)
+            {
+                if (data.Cart_OrderID == null)
+                {
+                    AppendClientError("Cart must have a orderID");
+                    missingMandatoryField = true;
+                }
+
+                if (data.Cart_ProdID == null)
+                {
+                    AppendClientError("Cart must have a prodID");
+                    missingMandatoryField = true;
+                }
+
+                if (data.Cart_Quantity == null)
+                {
+                    AppendClientError("Cart must have a quantity");
+                    missingMandatoryField = true;
+                }
+            }
+
+            return !missingMandatoryField;
+        }
+
         protected void exit_Click(object sender, EventArgs e)
         {
-            Response.Redirect("http://www.google.ca");
+            Response.Redirect(Constants.HomePage);
         }
 
         protected void generatePurchaseOrder_CheckedChanged(object sender, EventArgs e)
