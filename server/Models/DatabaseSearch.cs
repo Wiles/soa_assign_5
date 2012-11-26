@@ -80,16 +80,15 @@ namespace server.Models
 
             var searchResult = new SearchResult();
 
-            var results = query.Select(q => CreateServerServiceRequest(q.Customer, q.Order, q.Product, q.Cart)).ToList();
+            var results = query.Distinct().Select(q => CreateServerServiceRequest(q.Customer, q.Order, q.Product, q.Cart)).ToList();
 
             searchResult.Columns.AddRange(new string[]
             {
-                "Order_OrderID",
-                "Customer_CustID",
-                "Customer_LastName",
-                "Customer_FirstName",
-                "Order_PoNumber",
-                "Order_OrderDate"
+                "Product_ProdID",
+                "Product_ProdName",
+                "Cart_Quantity",
+                "Product_Price",
+                "Product_ProdWeight"
             });
 
             searchResult.Rows = results;

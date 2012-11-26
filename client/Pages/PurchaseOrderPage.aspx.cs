@@ -1,4 +1,5 @@
-﻿using shared;
+﻿using ClientSite.Logic;
+using shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -106,6 +107,30 @@ namespace ClientSite.Pages
                 }
 
                 ResultsTable.Rows.Add(row);
+            }
+        }
+
+        protected void GoBack_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Response.Redirect("/Pages/QueryPage.aspx");
+            }
+            catch (Exception ex)
+            {
+                Logger.GetInstance().Write(ex);
+            }
+        }
+
+        protected void Exit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Response.Redirect(Constants.HomePage);
+            }
+            catch (Exception ex)
+            {
+                Logger.GetInstance().Write(ex);
             }
         }
     }

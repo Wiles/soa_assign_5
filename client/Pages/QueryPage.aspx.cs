@@ -111,6 +111,7 @@ namespace ClientSite.Pages
             if (RequestType != PageType.Search && first)
             {
                 customerRadio.Checked = true;
+                UpdateEnabledRows();
             }
         }
 

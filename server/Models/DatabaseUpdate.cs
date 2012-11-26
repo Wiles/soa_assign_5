@@ -88,7 +88,7 @@ namespace server.Models
             if (Data.Customer_CustID != null)
             {
                 var customer = (from c in context.Customers
-                    where c.custID == Data.Customer_CustID
+                    where c.custID == Data.Customer_CustID && c.deleted == (byte)0
                         select c).FirstOrDefault();
 
 
@@ -109,7 +109,7 @@ namespace server.Models
             if (Data.Order_OrderID != null)
             {
                 var order = (from c in context.Orders
-                                where c.orderID == Data.Order_OrderID
+                             where c.orderID == Data.Order_OrderID && c.deleted == (byte)0
                                 select c).FirstOrDefault();
 
 
@@ -129,7 +129,7 @@ namespace server.Models
             if (Data.Product_ProdID != null)
             {
                 var product = (from c in context.Products
-                                where c.prodID == Data.Product_ProdID
+                               where c.prodID == Data.Product_ProdID && c.deleted == (byte)0
                                 select c).FirstOrDefault();
 
 
@@ -150,7 +150,7 @@ namespace server.Models
             if (Data.Cart_OrderID != null && Data.Cart_ProdID != null)
             {
                 var cart = (from c in context.Carts
-                                where c.orderID == Data.Cart_OrderID && c.prodID == Data.Cart_ProdID
+                            where c.orderID == Data.Cart_OrderID && c.prodID == Data.Cart_ProdID && c.deleted == (byte)0
                                 select c).FirstOrDefault();
 
 
@@ -175,7 +175,7 @@ namespace server.Models
             if (Data.Customer_CustID != null)
             {
                 var customer = (from c in context.Customers
-                                where c.custID == Data.Customer_CustID
+                                where c.custID == Data.Customer_CustID && c.deleted == (byte)0
                                 select c).FirstOrDefault();
 
 
@@ -191,7 +191,7 @@ namespace server.Models
 
                 // Delete all the data for the customer
                 var orders = (from o in context.Orders
-                             where o.custID == customer.custID
+                              where o.custID == customer.custID && o.deleted == (byte)0
                              select o).ToArray();
 
                 foreach (var order in orders)
@@ -209,7 +209,7 @@ namespace server.Models
             if (Data.Order_OrderID != null)
             {
                 var order = (from c in context.Orders
-                             where c.orderID == Data.Order_OrderID
+                             where c.orderID == Data.Order_OrderID && c.deleted == (byte)0
                              select c).FirstOrDefault();
 
 
@@ -233,7 +233,7 @@ namespace server.Models
             if (Data.Product_ProdID != null)
             {
                 var product = (from c in context.Products
-                               where c.prodID == Data.Product_ProdID
+                               where c.prodID == Data.Product_ProdID && c.deleted == (byte)0
                                select c).FirstOrDefault();
 
 
@@ -257,7 +257,7 @@ namespace server.Models
             if (Data.Cart_OrderID != null && Data.Cart_ProdID != null)
             {
                 var cart = (from c in context.Carts
-                            where c.orderID == Data.Cart_OrderID && c.prodID == Data.Cart_ProdID
+                            where c.orderID == Data.Cart_OrderID && c.prodID == Data.Cart_ProdID && c.deleted == (byte)0
                             select c).FirstOrDefault();
 
 

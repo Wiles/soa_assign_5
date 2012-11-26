@@ -59,11 +59,11 @@
         <br />
     
     </div>
-        <asp:Button ID="GoBack" runat="server" Text="Go Back" />
+        <asp:Button ID="GoBack" runat="server" Text="Go Back" OnClick="GoBack_Click" />
 &nbsp;
         <asp:Button ID="Print" runat="server" Text="Print" />
 &nbsp;
-        <asp:Button ID="Exit" runat="server" Text="Get me outta here!" />
+        <asp:Button ID="Exit" runat="server" Text="Get me outta here!" OnClick="Exit_Click" />
     </form>
 </body>
 </html>
