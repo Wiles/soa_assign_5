@@ -11,7 +11,10 @@
     <div>
     
         <strong>Purchase Order<br />
+        <br />
         </strong>
+        <asp:Label ID="Information" runat="server"></asp:Label>
+        <br />
         <br />
         <strong>Customer Information</strong><br />
         Customer ID:&nbsp;
@@ -22,6 +25,10 @@
         ,
         <asp:Label ID="FirstName" runat="server"></asp:Label>
         <br />
+        Phone:
+        <asp:Label ID="PhoneNumber" runat="server"></asp:Label>
+        <br />
+        <br />
         Purchase Date:
         <asp:Label ID="PurchaseDate" runat="server"></asp:Label>
         <br />
@@ -30,8 +37,8 @@
         <br />
         <br />
         <strong>Orders</strong><br />
-        <asp:GridView ID="OrdersGrid" runat="server">
-        </asp:GridView>
+        <asp:Table ID="ResultsTable" runat="server">
+        </asp:Table>
         <br />
         <br />
         SubTotal:
@@ -45,7 +52,10 @@
         <br />
         <br />
         <br />
-        Total Number of Pieces in Order:        Total Weight of Order:
+        Total Number of Pieces in Order:
+        <asp:Label ID="TotalNumberOfPieces" runat="server"></asp:Label>
+        <br />
+        Total Weight of Order: <asp:Label ID="TotalWeightOfOrder" runat="server"></asp:Label>
         <br />
     
     </div>

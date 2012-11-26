@@ -19,12 +19,93 @@ namespace ClientSite.Pages
                 // Setup print button
                 Print.Attributes.Add("onClick", "window.print()");
 
-
                 // Read content from previous query page
                 QueryPage sourcepage = (QueryPage)Context.Handler;
                 SearchResult = sourcepage.SearchResult;
 
-                // TODO: Parse this content and fill the page
+                if (SearchResult.Rows.Count == 0)
+                {
+                    Information.Text = "No Purchase Order Found";
+                }
+                else
+                {
+                    PopulateSearchResults();
+                    try
+                    {
+                        var custId = SearchResult.CustID;
+                        var firstname = SearchResult.FirstName;
+                        var lastname = SearchResult.LastName;
+                        var phonenumber = SearchResult.PhoneNumber;
+                        var ponumber = SearchResult.PoNumber;
+                        var purchasedate = SearchResult.PurchaseDate;
+                        var subtotal = SearchResult.SubTotal;
+                        var tax = SearchResult.Tax;
+                        var total = SearchResult.Total;
+                        var totalNumOfPieces = SearchResult.TotalNumberOfPieces;
+                        var totalWeight = SearchResult.TotalWeight;
+
+                        CustomerID.Text = custId.ToString();
+                        FirstName.Text = firstname;
+                        LastName.Text = lastname;
+                        PhoneNumber.Text = phonenumber;
+                        PoNumber.Text = ponumber;
+                        PurchaseDate.Text = purchasedate;
+                        SubTotal.Text = subtotal.ToString();
+                        Tax.Text = tax.ToString();
+                        Total.Text = total.ToString();
+                        TotalNumberOfPieces.Text = totalNumOfPieces.ToString();
+                        TotalWeightOfOrder.Text = totalWeight.ToString();
+                    }
+                    catch (NullReferenceException)
+                    {
+                        // Ignore missing fields...
+                        throw;
+                    }
+                }
+            }
+        }
+
+        private void PopulateSearchResults()
+        {
+            var columns = SearchResult.Columns;
+
+            ResultsTable.Rows.Clear();
+            var headerRow = new TableRow();
+            foreach (var column in columns)
+            {
+                var cell = new TableCell();
+                if (column.Contains('_'))
+                {
+                    cell.Text = column.Split('_')[1];
+                }
+                else
+                {
+                    cell.Text = column;
+                }
+                headerRow.Cells.Add(cell);
+            }
+            ResultsTable.Rows.Add(headerRow);
+
+            foreach (var searchResultRow in SearchResult.Rows)
+            {
+                var row = new TableRow();
+
+                foreach (var column in columns)
+                {
+                    string strValue = "";
+                    var value = searchResultRow.GetType().GetProperty(column)
+                        .GetValue(searchResultRow, null);
+                    if (value != null)
+                    {
+                        strValue = value.ToString();
+                    }
+
+                    var cell = new TableCell();
+                    cell.Text = strValue;
+                    row.Cells.Add(cell);
+                }
+
+                ResultsTable.Rows.Add(row);
             }
         }
     }

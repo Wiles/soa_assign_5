@@ -22,6 +22,15 @@ namespace ClientSite.Pages {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
+        /// Information control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Information;
+        
+        /// <summary>
         /// CustomerID control.
         /// </summary>
         /// <remarks>
@@ -49,6 +58,15 @@ namespace ClientSite.Pages {
         protected global::System.Web.UI.WebControls.Label FirstName;
         
         /// <summary>
+        /// PhoneNumber control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label PhoneNumber;
+        
+        /// <summary>
         /// PurchaseDate control.
         /// </summary>
         /// <remarks>
@@ -67,13 +85,13 @@ namespace ClientSite.Pages {
         protected global::System.Web.UI.WebControls.Label PoNumber;
         
         /// <summary>
-        /// OrdersGrid control.
+        /// ResultsTable control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView OrdersGrid;
+        protected global::System.Web.UI.WebControls.Table ResultsTable;
         
         /// <summary>
         /// SubTotal control.
@@ -101,6 +119,24 @@ namespace ClientSite.Pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Total;
+        
+        /// <summary>
+        /// TotalNumberOfPieces control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label TotalNumberOfPieces;
+        
+        /// <summary>
+        /// TotalWeightOfOrder control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label TotalWeightOfOrder;
         
         /// <summary>
         /// GoBack control.
