@@ -172,29 +172,26 @@ Customer firstName, Order orderID, Order poNumber or Order orderDate when 'Gener
                 return;
             }
 
-            DateTime parsed;
-
-            // Check maximum lengths, because Linq to SQL generates crappy messages on the server end
-            var re = new Regex(@"(\d{3})-(\d{3})-(\d{4})");
-            if (data.Customer_PhoneNumber != null && re.Match(data.Customer_PhoneNumber).Groups.Count <= 0)
-            {
-                AppendClientError("Please use the following format on phone numbers (xxx-xxx-xxxx)");
-                return;
-            }
-            else if (data.Order_OrderDate != null && !DateTime.TryParseExact(data.Order_OrderDate, "MM-DD-YY",
-                CultureInfo.CurrentCulture, DateTimeStyles.None, out parsed))
-            {
-                AppendClientError("Please use the following format for order dates (MM-DD-YY) and proper dates");
-                return;
-            }
-
-
             if (RequestType == PageType.Insert)
             {
                 if (!EnforceRequiredInsertFieldsFilled(data))
                 {
                     return;
                 }
+            }
+
+            // Check maximum lengths, because Linq to SQL generates crappy messages on the server end
+            DateTime parsed;
+            if (data.Customer_PhoneNumber != null && !Regex.Match(data.Customer_PhoneNumber, @"(\d{3})-(\d{3})-(\d{4})").Success)
+            {
+                AppendClientError("Please use the following format on phone numbers (xxx-xxx-xxxx)");
+                return;
+            }
+            else if (data.Order_OrderDate != null && !DateTime.TryParseExact(data.Order_OrderDate, "MM-dd-yy",
+                CultureInfo.CurrentCulture, DateTimeStyles.None, out parsed))
+            {
+                AppendClientError("Please use the following format for order dates (MM-DD-YY) and proper dates");
+                return;
             }
 
             switch (RequestType)

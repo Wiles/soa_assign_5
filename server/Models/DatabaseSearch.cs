@@ -106,16 +106,16 @@ namespace server.Models
                 var order = query.Select(c => c.Order).FirstOrDefault();
                 searchResult.PoNumber = order.poNumber;
                 searchResult.PurchaseDate = order.orderDate;
-                
-                var subTotal = query.Select(q => q.Product.price * q.Cart.quantity).Sum();
+
+                var subTotal = query.Where(q => q.Product.inStock == (byte)1).Select(q => q.Product.price * q.Cart.quantity).Sum();
                 var tax = subTotal * 0.13;
                 var total = subTotal + tax;
                 searchResult.SubTotal = subTotal;
                 searchResult.Tax = tax;
                 searchResult.Total = total;
 
-                var totalPieces = query.Select(q => q.Cart.quantity).Sum();
-                var totalWeight = query.Select(q => q.Product.prodWeight * q.Cart.quantity).Sum();
+                var totalPieces = query.Where(q => q.Product.inStock == (byte)1).Select(q => q.Cart.quantity).Sum();
+                var totalWeight = query.Where(q => q.Product.inStock == (byte)1).Select(q => q.Product.prodWeight * q.Cart.quantity).Sum();
                 searchResult.TotalNumberOfPieces = totalPieces;
                 searchResult.TotalWeight = totalWeight;
             }
