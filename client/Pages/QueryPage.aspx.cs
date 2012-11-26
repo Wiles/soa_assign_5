@@ -84,25 +84,19 @@ namespace ClientSite.Pages
                         cartRadio.Visible = false;
                         orderRadio.Visible = false;
 
-                        custId.ReadOnly = true;
-                        prodId.ReadOnly = true;
-                        orderId.ReadOnly = true;
-                        orderCustId.ReadOnly = true;
-                        cartOrderId.ReadOnly = true;
-                        cartProdId.ReadOnly = true;
-                        generatePurchaseOrder.Visible = true;
+                        GeneratePurchaseOrder.Visible = true;
                         break;
                     }
                 case PageType.Insert:
                     {
                         headerLabel.Text = "Insert some data!";
 
-                        custId.ReadOnly = true;
-                        prodId.ReadOnly = true;
-                        orderId.ReadOnly = true;
-                        orderCustId.ReadOnly = true;
-                        cartOrderId.ReadOnly = true;
-                        cartProdId.ReadOnly = true;
+                        CustId.ReadOnly = true;
+                        ProdId.ReadOnly = true;
+                        OrderId.ReadOnly = true;
+                        OrderCustId.ReadOnly = true;
+                        CartOrderId.ReadOnly = true;
+                        CartProdId.ReadOnly = true;
                         break;
                     }
                 case PageType.Update:
@@ -135,21 +129,21 @@ namespace ClientSite.Pages
             // Customers
             try
             {
-                data.Customer_CustID = (String.IsNullOrWhiteSpace(custId.Text)) ? null : (int?)int.Parse(custId.Text);
+                data.Customer_CustID = (String.IsNullOrWhiteSpace(CustId.Text)) ? null : (int?)int.Parse(CustId.Text);
             }
             catch (Exception)
             {
                 AppendClientError("Please enter a number into Customer custID");
             }
 
-            data.Customer_FirstName = (String.IsNullOrWhiteSpace(firstname.Text)) ? null : firstname.Text;
-            data.Customer_LastName = (String.IsNullOrWhiteSpace(lastname.Text)) ? null : lastname.Text;
-            data.Customer_PhoneNumber = (String.IsNullOrWhiteSpace(phonenumber.Text)) ? null : phonenumber.Text;
+            data.Customer_FirstName = (String.IsNullOrWhiteSpace(FirstName.Text)) ? null : FirstName.Text;
+            data.Customer_LastName = (String.IsNullOrWhiteSpace(LastName.Text)) ? null : LastName.Text;
+            data.Customer_PhoneNumber = (String.IsNullOrWhiteSpace(Phonenumber.Text)) ? null : Phonenumber.Text;
 
             // Orders
             try
             {
-                data.Order_CustID = (String.IsNullOrWhiteSpace(orderCustId.Text)) ? null : (int?)int.Parse(orderCustId.Text);
+                data.Order_CustID = (String.IsNullOrWhiteSpace(OrderCustId.Text)) ? null : (int?)int.Parse(OrderCustId.Text);
             }
             catch (Exception)
             {
@@ -158,20 +152,20 @@ namespace ClientSite.Pages
 
             try
             {
-                data.Order_OrderID = (String.IsNullOrWhiteSpace(orderId.Text)) ? null : (int?)int.Parse(orderId.Text);
+                data.Order_OrderID = (String.IsNullOrWhiteSpace(OrderId.Text)) ? null : (int?)int.Parse(OrderId.Text);
             }
             catch (Exception)
             {
                 AppendClientError("Please enter a number into Order orderID");
             }
 
-            data.Order_OrderDate = (String.IsNullOrWhiteSpace(orderDate.Text)) ? null : orderDate.Text;
-            data.Order_PoNumber = (String.IsNullOrWhiteSpace(poNumber.Text)) ? null : poNumber.Text;
+            data.Order_OrderDate = (String.IsNullOrWhiteSpace(OrderDate.Text)) ? null : OrderDate.Text;
+            data.Order_PoNumber = (String.IsNullOrWhiteSpace(PoNumber.Text)) ? null : PoNumber.Text;
 
             // Products
             try
             {
-                data.Product_ProdID = (String.IsNullOrWhiteSpace(prodId.Text)) ? null : (int?)int.Parse(prodId.Text);
+                data.Product_ProdID = (String.IsNullOrWhiteSpace(ProdId.Text)) ? null : (int?)int.Parse(ProdId.Text);
             }
             catch (Exception)
             {
@@ -180,7 +174,7 @@ namespace ClientSite.Pages
 
             try
             {
-                data.Product_Price = (String.IsNullOrWhiteSpace(price.Text)) ? null : (double?)double.Parse(price.Text);
+                data.Product_Price = (String.IsNullOrWhiteSpace(Price.Text)) ? null : (double?)double.Parse(Price.Text);
             }
             catch (Exception)
             {
@@ -189,20 +183,29 @@ namespace ClientSite.Pages
 
             try
             {
-                data.Product_ProdWeight = (String.IsNullOrWhiteSpace(prodWeight.Text)) ? null : (int?)int.Parse(prodWeight.Text);
+                data.Product_ProdWeight = (String.IsNullOrWhiteSpace(ProdWeight.Text)) ? null : (int?)int.Parse(ProdWeight.Text);
             }
             catch (Exception)
             {
                 AppendClientError("Please enter a number into Product prodWeight");
             }
 
-            data.Product_InStock = (soldOut.Checked) ? (byte)0 : (byte)1;
-            data.Product_ProdName = prodName.Text;
+            if (RequestType != PageType.Search)
+            {
+                data.Product_InStock = (SoldOut.Checked) ? (byte)0 : (byte)1;
+            }
+            else
+            {
+                // Ignore the instock field when performing search
+                data.Product_InStock = null;
+            }
+
+            data.Product_ProdName = (String.IsNullOrWhiteSpace(ProdName.Text)) ? null : ProdName.Text;
 
             // Carts
             try
             {
-                data.Cart_OrderID = (String.IsNullOrWhiteSpace(cartOrderId.Text)) ? null : (int?)int.Parse(cartOrderId.Text);
+                data.Cart_OrderID = (String.IsNullOrWhiteSpace(CartOrderId.Text)) ? null : (int?)int.Parse(CartOrderId.Text);
             }
             catch (Exception)
             {
@@ -211,7 +214,7 @@ namespace ClientSite.Pages
 
             try
             {
-                data.Cart_ProdID = (String.IsNullOrWhiteSpace(cartProdId.Text)) ? null : (int?)int.Parse(cartProdId.Text);
+                data.Cart_ProdID = (String.IsNullOrWhiteSpace(CartProdId.Text)) ? null : (int?)int.Parse(CartProdId.Text);
             }
             catch (Exception)
             {
@@ -220,7 +223,7 @@ namespace ClientSite.Pages
 
             try
             {
-                data.Cart_Quantity = (String.IsNullOrWhiteSpace(quantity.Text)) ? null : (int?)int.Parse(quantity.Text);
+                data.Cart_Quantity = (String.IsNullOrWhiteSpace(Quantity.Text)) ? null : (int?)int.Parse(Quantity.Text);
             }
             catch (Exception)
             {
@@ -252,12 +255,12 @@ namespace ClientSite.Pages
                 return;
             }
 
-            if (generatePurchaseOrder.Checked)
+            if (GeneratePurchaseOrder.Checked)
             {
+                // Different fields are mandatory when generate P.O. is checked
                 if (data.Customer_CustID == null && data.Customer_LastName == null &&
                     data.Customer_FirstName == null && data.Order_OrderID == null &&
-                    data.Order_PoNumber == null && data.Order_OrderDate == null
-                    )
+                    data.Order_PoNumber == null && data.Order_OrderDate == null)
                 {
                     AppendClientError(@"At least one of the following fields must be filled: Customer custID, Customer lastName, <br>
 Customer firstName, Order orderID, Order poNumber or Order orderDate when 'Generate P.O.' is checked");
@@ -265,26 +268,39 @@ Customer firstName, Order orderID, Order poNumber or Order orderDate when 'Gener
                 }
             }
 
+            if (!data.HasOneOrMoreFieldsWithAValue())
+            {
+                AppendClientError("Please fill in at least one of the fields");
+                return;
+            }
+
+            // Check maximum lengths, because Linq to SQL generates crappy messages on the server end
+            if (true)
+            {
+                
+            }
+
             switch (RequestType)
             {
                 case PageType.Search:
                     {
-                        var url = new Uri(ClientConfiguration.ServerUrl.ToString() + data.ToUrl());
+                        var purchaseOrder = GeneratePurchaseOrder.Checked;
+                        
+                        var url = new Uri(ClientConfiguration.ServerUrl.ToString() + data.ToUrl(purchaseOrder));
                         var client = HttpWebRequest.Create(url);
-                        client.GetRequestStream().Close();
 
                         using (var responseStream = client.GetResponse().GetResponseStream())
                         using (var reader = new StreamReader(responseStream))
                         {
                             SearchContent = reader.ReadToEnd();
 
-                            if (generatePurchaseOrder.Checked)
+                            if (purchaseOrder)
                             {
-                                Server.Transfer("/Page/PurchaseOrderPage.aspx");
+                                Server.Transfer("/Pages/PurchaseOrderPage.aspx");
                             }
                             else
                             {
-                                Server.Transfer("/Page/SearchResultsPage.aspx");
+                                Server.Transfer("/Pages/SearchResultsPage.aspx");
                             }
                         }
 
@@ -371,15 +387,15 @@ Customer firstName, Order orderID, Order poNumber or Order orderDate when 'Gener
 
         protected void generatePurchaseOrder_CheckedChanged(object sender, EventArgs e)
         {
-            if (generatePurchaseOrder.Checked)
+            if (GeneratePurchaseOrder.Checked)
             {
                 DisableAllInputs();
-                orderId.ReadOnly = false;
-                custId.ReadOnly = false;
-                lastname.ReadOnly = false;
-                firstname.ReadOnly = false;
-                poNumber.ReadOnly = false;
-                orderDate.ReadOnly = false;
+                OrderId.ReadOnly = false;
+                CustId.ReadOnly = false;
+                LastName.ReadOnly = false;
+                FirstName.ReadOnly = false;
+                PoNumber.ReadOnly = false;
+                OrderDate.ReadOnly = false;
             }
             else
             {
@@ -424,7 +440,7 @@ Customer firstName, Order orderID, Order poNumber or Order orderDate when 'Gener
                 }
             }
 
-            soldOut.Enabled = false;
+            SoldOut.Enabled = false;
         }
 
         private void UpdateEnabledRows()
@@ -437,34 +453,34 @@ Customer firstName, Order orderID, Order poNumber or Order orderDate when 'Gener
             if (customerRadio.Checked)
             {
                 DisableAllInputs();
-                custId.ReadOnly = false;
-                firstname.ReadOnly = false;
-                lastname.ReadOnly = false;
-                phonenumber.ReadOnly = false;
+                CustId.ReadOnly = false;
+                FirstName.ReadOnly = false;
+                LastName.ReadOnly = false;
+                Phonenumber.ReadOnly = false;
             }
             else if (productRadio.Checked)
             {
                 DisableAllInputs();
-                prodId.ReadOnly = false;
-                prodName.ReadOnly = false;
-                price.ReadOnly = false;
-                prodWeight.ReadOnly = false;
-                soldOut.Enabled = true;
+                ProdId.ReadOnly = false;
+                ProdName.ReadOnly = false;
+                Price.ReadOnly = false;
+                ProdWeight.ReadOnly = false;
+                SoldOut.Enabled = true;
             }
             else if (orderRadio.Checked)
             {
                 DisableAllInputs();
-                orderCustId.ReadOnly = false;
-                orderId.ReadOnly = false;
-                poNumber.ReadOnly = false;
-                orderDate.ReadOnly = false;
+                OrderCustId.ReadOnly = false;
+                OrderId.ReadOnly = false;
+                PoNumber.ReadOnly = false;
+                OrderDate.ReadOnly = false;
             }
             else if (cartRadio.Checked)
             {
                 DisableAllInputs();
-                cartOrderId.ReadOnly = false;
-                cartProdId.ReadOnly = false;
-                quantity.ReadOnly = false;
+                CartOrderId.ReadOnly = false;
+                CartProdId.ReadOnly = false;
+                Quantity.ReadOnly = false;
             }
         }
 

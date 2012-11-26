@@ -41,24 +41,59 @@ namespace shared.FormData
             var data = new ServerServiceRequest();
             foreach (var tcv in tcvs)
             {
-
                 var table = tcv.Table;
                 var column = tcv.Column[0].ToString().ToUpper() + tcv.Column.Substring(1);
                 var name = String.Format("{0}_{1}", table, column);
 
                 if (!IgnoreProperty(name))
                 {
-                    var value = tcv.Value;
-
                     var type = data.GetType();
-                    type.GetProperty(name).SetValue(data, value, null);
+                    var property = type.GetProperty(name);
+                    var propertyType = property.PropertyType;
+
+                    if (propertyType == typeof(string))
+                    {
+                        var value = (tcv.Value != null) ? tcv.Value.ToString() : "";
+                        property.SetValue(data, value, null);
+                    }
+                    else if (propertyType == typeof(int))
+                    {
+                        property.SetValue(data, int.Parse(tcv.Value), null);
+                    }
+                    else if (propertyType == typeof(byte))
+                    {
+                        property.SetValue(data, byte.Parse(tcv.Value), null);
+                    }
+                    else if (propertyType == typeof(double))
+                    {
+                        property.SetValue(data, double.Parse(tcv.Value), null);
+                    }
+                    else if (propertyType == typeof(int?))
+                    {
+                        int? value = (tcv.Value != null) ? int.Parse(tcv.Value.ToString()) : 0;
+                        property.SetValue(data, value, null);
+                    }
+                    else if (propertyType == typeof(byte?))
+                    {
+                        byte? value = (tcv.Value != null) ? byte.Parse(tcv.Value.ToString()) : (byte)0;
+                        property.SetValue(data, value, null);
+                    }
+                    else if (propertyType == typeof(double?))
+                    {
+                        double? value = (tcv.Value != null) ? double.Parse(tcv.Value.ToString()) : 0;
+                        property.SetValue(data, value, null);
+                    }
+                    else if (propertyType == typeof(bool))
+                    {
+                        property.SetValue(data, bool.Parse(tcv.Value), null);
+                    }
                 }
             }
 
             return data;
         }
 
-        public string ToUrl()
+        public string ToUrl(bool withGeneratePurchaseOrder = false)
         {
             var sb = new StringBuilder();
             var props = this.GetType().GetProperties();
@@ -84,7 +119,29 @@ namespace shared.FormData
             }
 
             // Remove the last '/'
-            return sb.ToString().TrimEnd('/');
+            var suffix = (withGeneratePurchaseOrder) ? (GenPurchaseOrder.ToString() + '/') : "";
+            return suffix + sb.ToString().TrimEnd('/');
+        }
+
+        /// <summary>
+        /// Self DocumentingMethodNameThatTellsYouEverythingABoutItBecauseItsUltraAmazingWeShouldAllWriteLikeThisBecauseItsGood
+        /// </summary>
+        /// <returns>Is this at least one non-null property in this object</returns>
+        public bool HasOneOrMoreFieldsWithAValue()
+        {
+            var props = this.GetType().GetProperties();
+            foreach (var prop in props)
+            {
+                if (!IgnoreProperty(prop.Name))
+                {
+                    if (prop.GetValue(this, null) != null)
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
         }
 
         private static bool IgnoreProperty(string name)

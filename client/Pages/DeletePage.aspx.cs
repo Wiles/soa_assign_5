@@ -25,7 +25,8 @@ namespace ClientSite.Pages
                 {
                     // Populate the carts drop down
                     var context = new SoaDataContext();
-                    var labels = context.Carts.Select(c => String.Format("{0},{1}", c.orderID, c.prodID)).ToList();
+                    var labels = context.Carts.Where(c => c.deleted == (byte)0)
+                        .Select(c => String.Format("{0},{1}", c.orderID, c.prodID)).ToList();
 
                     CartDropDown.Items.Clear();
                     foreach (var label in labels)

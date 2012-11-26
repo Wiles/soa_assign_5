@@ -49,13 +49,13 @@ namespace ClientSite.Pages {
         protected global::System.Web.UI.WebControls.Label ServerErrors;
         
         /// <summary>
-        /// generatePurchaseOrder control.
+        /// GeneratePurchaseOrder control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox generatePurchaseOrder;
+        protected global::System.Web.UI.WebControls.CheckBox GeneratePurchaseOrder;
         
         /// <summary>
         /// customerRadio control.
@@ -76,13 +76,13 @@ namespace ClientSite.Pages {
         protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
-        /// custId control.
+        /// CustId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox custId;
+        protected global::System.Web.UI.WebControls.TextBox CustId;
         
         /// <summary>
         /// Label3 control.
@@ -94,13 +94,13 @@ namespace ClientSite.Pages {
         protected global::System.Web.UI.WebControls.Label Label3;
         
         /// <summary>
-        /// firstname control.
+        /// FirstName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox firstname;
+        protected global::System.Web.UI.WebControls.TextBox FirstName;
         
         /// <summary>
         /// Label4 control.
@@ -112,13 +112,13 @@ namespace ClientSite.Pages {
         protected global::System.Web.UI.WebControls.Label Label4;
         
         /// <summary>
-        /// lastname control.
+        /// LastName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox lastname;
+        protected global::System.Web.UI.WebControls.TextBox LastName;
         
         /// <summary>
         /// Label5 control.
@@ -130,13 +130,13 @@ namespace ClientSite.Pages {
         protected global::System.Web.UI.WebControls.Label Label5;
         
         /// <summary>
-        /// phonenumber control.
+        /// Phonenumber control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox phonenumber;
+        protected global::System.Web.UI.WebControls.TextBox Phonenumber;
         
         /// <summary>
         /// productRadio control.
@@ -148,49 +148,49 @@ namespace ClientSite.Pages {
         protected global::System.Web.UI.WebControls.RadioButton productRadio;
         
         /// <summary>
-        /// prodId control.
+        /// ProdId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox prodId;
+        protected global::System.Web.UI.WebControls.TextBox ProdId;
         
         /// <summary>
-        /// prodName control.
+        /// ProdName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox prodName;
+        protected global::System.Web.UI.WebControls.TextBox ProdName;
         
         /// <summary>
-        /// price control.
+        /// Price control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox price;
+        protected global::System.Web.UI.WebControls.TextBox Price;
         
         /// <summary>
-        /// prodWeight control.
+        /// ProdWeight control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox prodWeight;
+        protected global::System.Web.UI.WebControls.TextBox ProdWeight;
         
         /// <summary>
-        /// soldOut control.
+        /// SoldOut control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox soldOut;
+        protected global::System.Web.UI.WebControls.CheckBox SoldOut;
         
         /// <summary>
         /// orderRadio control.
@@ -202,40 +202,40 @@ namespace ClientSite.Pages {
         protected global::System.Web.UI.WebControls.RadioButton orderRadio;
         
         /// <summary>
-        /// orderId control.
+        /// OrderId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox orderId;
+        protected global::System.Web.UI.WebControls.TextBox OrderId;
         
         /// <summary>
-        /// orderCustId control.
+        /// OrderCustId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox orderCustId;
+        protected global::System.Web.UI.WebControls.TextBox OrderCustId;
         
         /// <summary>
-        /// poNumber control.
+        /// PoNumber control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox poNumber;
+        protected global::System.Web.UI.WebControls.TextBox PoNumber;
         
         /// <summary>
-        /// orderDate control.
+        /// OrderDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox orderDate;
+        protected global::System.Web.UI.WebControls.TextBox OrderDate;
         
         /// <summary>
         /// cartRadio control.
@@ -247,57 +247,57 @@ namespace ClientSite.Pages {
         protected global::System.Web.UI.WebControls.RadioButton cartRadio;
         
         /// <summary>
-        /// cartOrderId control.
+        /// CartOrderId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox cartOrderId;
+        protected global::System.Web.UI.WebControls.TextBox CartOrderId;
         
         /// <summary>
-        /// cartProdId control.
+        /// CartProdId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox cartProdId;
+        protected global::System.Web.UI.WebControls.TextBox CartProdId;
         
         /// <summary>
-        /// quantity control.
+        /// Quantity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox quantity;
+        protected global::System.Web.UI.WebControls.TextBox Quantity;
         
         /// <summary>
-        /// goBack control.
+        /// GoBack control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button goBack;
+        protected global::System.Web.UI.WebControls.Button GoBack;
         
         /// <summary>
-        /// execute control.
+        /// Execute control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button execute;
+        protected global::System.Web.UI.WebControls.Button Execute;
         
         /// <summary>
-        /// exit control.
+        /// Exit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button exit;
+        protected global::System.Web.UI.WebControls.Button Exit;
     }
 }

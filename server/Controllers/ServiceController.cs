@@ -30,27 +30,19 @@ namespace server.Controllers
 
                 values = values[0].Split('/');
 
+                bool purchaseOrder = false;
+                if (values[0].Equals("true", StringComparison.CurrentCultureIgnoreCase))
+                {
+                    purchaseOrder = true;
+                    // Remove the purchase order item
+                    values = values.Skip(1).ToArray();
+                }
 
                 var queries = TableQuery.ListQueriesFromPath(values);
+                var data = ServerServiceRequest.FromTableQueries(queries.Select(q => q.ToTableColumnValue()).ToList());
 
-                var context = new SoaDataContext();
-                var query = from customer in context.Customers
-                            from order in context.Orders
-                                where customer.custID == order.custID
-                            from cart in context.Carts
-                                where cart.orderID == order.orderID
-                            from product in context.Products
-                                where product.prodID == cart.prodID
-                            select new { Customer = customer, Cart = cart, Order = order, Product = product };
-
-                var results = query.ToArray();
-
-                int resultIndex = 0;
-                foreach (var item in results)
-                {
-                    Logger.GetInstance().Write("Item {0}: {1}", resultIndex, item);
-                    resultIndex++;
-                }
+                var searcher = new DatabaseSearch(data, purchaseOrder);
+                searcher.Search();
 
                 throw new Exception("Failure to return JsonResult");
             }
@@ -73,10 +65,9 @@ namespace server.Controllers
 
 
                 var queries = TableQuery.ListQueriesFromPath(values);
+                var data = ServerServiceRequest.FromTableQueries(queries.Select(q => q.ToTableColumnValue()).ToList());
 
-                var delete = ServerServiceRequest.FromTableQueries(queries.Select(q => q.ToTableColumnValue()).ToList());
-
-                new DatabaseUpdate(delete).Delete();
+                new DatabaseUpdate(data).Delete();
 
                 return Json(new JsonSuccess("OK", "Successfully Deleted"));
             }
@@ -111,7 +102,7 @@ namespace server.Controllers
             catch (Exception ex)
             {
                 Logger.GetInstance().Write(ex);
-                return Json(new JsonError("Failure to insert"));
+                return Json(new JsonError("Failure to insert: " + ex.Message));
             }
         }
 

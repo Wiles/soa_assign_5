@@ -45,7 +45,7 @@
     <Compile Include="Logger.cs" />
     <Compile Include="PageType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Screen2Data.cs" />
+    <Compile Include="ServerServiceRequest.cs" />
     <Compile Include="SearchResult.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

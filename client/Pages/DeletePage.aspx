@@ -19,7 +19,7 @@
         <asp:DropDownList ID="CustomerDropDown" runat="server" AutoPostBack="True" DataSourceID="CustomerLinqDataSource" DataTextField="custID" DataValueField="custID" OnDataBound="CustomerDropDown_DataBound">
         </asp:DropDownList>
         <asp:Button ID="CustomerDelete" runat="server" OnClick="CustomerDelete_Click" Text="Delete" />
-        <asp:LinqDataSource ID="CustomerLinqDataSource" runat="server" ContextTypeName="ClientSite.Sql.SoaDataContext" EntityTypeName="" Select="new (key as custID, it as Customers)" TableName="Customers" GroupBy="custID" OrderGroupsBy="key">
+        <asp:LinqDataSource ID="CustomerLinqDataSource" runat="server" ContextTypeName="ClientSite.Sql.SoaDataContext" EntityTypeName="" Select="new (key as custID, it as Customers)" TableName="Customers" GroupBy="custID" OrderGroupsBy="key" Where="deleted == byte.MinValue">
         </asp:LinqDataSource>
         <br />
         <br />
@@ -27,7 +27,7 @@
         <asp:DropDownList ID="OrderDropDown" runat="server" AutoPostBack="True" DataSourceID="OrderLinqDataSource" DataTextField="orderID" DataValueField="orderID" OnDataBound="OrderDropDown_DataBound">
         </asp:DropDownList>
         <asp:Button ID="OrderDelete" runat="server" OnClick="OrderDelete_Click" Text="Delete" />
-        <asp:LinqDataSource ID="OrderLinqDataSource" runat="server" ContextTypeName="ClientSite.Sql.SoaDataContext" EntityTypeName="" Select="new (key as orderID, it as Carts)" TableName="Carts" GroupBy="orderID" OrderGroupsBy="key">
+        <asp:LinqDataSource ID="OrderLinqDataSource" runat="server" ContextTypeName="ClientSite.Sql.SoaDataContext" EntityTypeName="" Select="new (key as orderID, it as Carts)" TableName="Carts" GroupBy="orderID" OrderGroupsBy="key" Where="deleted == byte.MinValue">
         </asp:LinqDataSource>
         <br />
         <br />
@@ -35,7 +35,7 @@
         <asp:DropDownList ID="ProductDropDown" runat="server" AutoPostBack="True" DataSourceID="ProductLinqDataSource" DataTextField="prodID" DataValueField="prodID" OnDataBound="ProductDropDown_DataBound">
         </asp:DropDownList>
         <asp:Button ID="ProductDelete" runat="server" OnClick="ProductDelete_Click" Text="Delete" />
-        <asp:LinqDataSource ID="ProductLinqDataSource" runat="server" ContextTypeName="ClientSite.Sql.SoaDataContext" EntityTypeName="" Select="new (key as prodID, it as Carts)" TableName="Carts" GroupBy="prodID" OrderGroupsBy="key">
+        <asp:LinqDataSource ID="ProductLinqDataSource" runat="server" ContextTypeName="ClientSite.Sql.SoaDataContext" EntityTypeName="" Select="new (key as prodID, it as Carts)" TableName="Carts" GroupBy="prodID" OrderGroupsBy="key" Where="deleted == byte.MinValue">
         </asp:LinqDataSource>
         <br />
         <br />
