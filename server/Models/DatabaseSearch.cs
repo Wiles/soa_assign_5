@@ -1,10 +1,8 @@
-﻿using server.Sql;
+﻿using System;
+using System.Linq;
+using server.Sql;
 using shared;
 using shared.FormData;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace server.Models
 {
@@ -13,12 +11,21 @@ namespace server.Models
         private readonly ServerServiceRequest Data;
         private readonly bool PurchaseOrder;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DatabaseSearch" /> class.
+        /// </summary>
+        /// <param name="serviceRequest">The service request.</param>
+        /// <param name="purchaseOrder">if set to <c>true</c> [purchase order].</param>
         public DatabaseSearch(ServerServiceRequest serviceRequest, bool purchaseOrder = false)
         {
             this.Data = serviceRequest;
             this.PurchaseOrder = purchaseOrder;
         }
 
+        /// <summary>
+        /// Performs a Search.
+        /// </summary>
+        /// <returns>The search result.</returns>
         public SearchResult Search()
         {
             if (PurchaseOrder)
@@ -31,6 +38,10 @@ namespace server.Models
             }
         }
 
+        /// <summary>
+        /// Performs a purchase order search
+        /// </summary>
+        /// <returns>The search results.</returns>
         private SearchResult PurchaseOrderSearch()
         {
             var context = new SoaDataContext();
@@ -126,6 +137,10 @@ namespace server.Models
             return searchResult;
         }
 
+        /// <summary>
+        /// Performs the normal search.
+        /// </summary>
+        /// <returns></returns>
         private SearchResult PerformNormalSearch()
         {
             var context = new SoaDataContext();
@@ -333,6 +348,14 @@ namespace server.Models
             return searchResult;
         }
 
+        /// <summary>
+        /// Creates the service request.
+        /// </summary>
+        /// <param name="customer">The customer.</param>
+        /// <param name="order">The order.</param>
+        /// <param name="product">The product.</param>
+        /// <param name="cart">The cart.</param>
+        /// <returns>The service request.</returns>
         private static ServerServiceRequest CreateServerServiceRequest(Customer customer, Order order, Product product, Cart cart)
         {
             var data = new ServerServiceRequest();

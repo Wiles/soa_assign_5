@@ -1,14 +1,16 @@
-﻿using shared.FormData;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Web;
+using shared.FormData;
 
 namespace server.Sql
 {
     public class TableQuery
     {
+        /// <summary>
+        /// The table types
+        /// </summary>
         private static Dictionary<string, Type> tableTypes = new Dictionary<string, Type>()
         {
             { "Product", typeof(Product)},
@@ -17,6 +19,9 @@ namespace server.Sql
             { "Customer", typeof(Customer)}
         };
 
+        /// <summary>
+        /// The parameter types
+        /// </summary>
         private enum ParamType
         {
             None,
@@ -25,10 +30,27 @@ namespace server.Sql
             Value
         }
 
+        /// <summary>
+        /// The table name
+        /// </summary>
         private string TableName;
+
+        /// <summary>
+        /// The column name
+        /// </summary>
         private string ColumnName;
+
+        /// <summary>
+        /// The value
+        /// </summary>
         private string Value;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TableQuery" /> class.
+        /// </summary>
+        /// <param name="tableName">Name of the table.</param>
+        /// <param name="columnName">Name of the column.</param>
+        /// <param name="value">The value.</param>
         public TableQuery(string tableName, string columnName, string value)
         {
             this.TableName = tableName;
@@ -36,16 +58,32 @@ namespace server.Sql
             this.Value = value;
         }
 
+        /// <summary>
+        /// To the table column value.
+        /// </summary>
+        /// <returns></returns>
         public TableColumnValue ToTableColumnValue()
         {
             return new TableColumnValue(TableName, ColumnName, Value);
         }
 
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="System.String" /> that represents this instance.
+        /// </returns>
         public override string ToString()
         {
             return String.Format("Table {0} Column {1} Value {2}", TableName, ColumnName, Value);
         }
 
+        /// <summary>
+        /// Lists the queries from path.
+        /// </summary>
+        /// <param name="values">The values.</param>
+        /// <returns></returns>
+        /// <exception cref="System.Exception"></exception>
         public static List<TableQuery> ListQueriesFromPath(string[] values)
         {
             using (var context = new SoaDataContext())

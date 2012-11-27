@@ -1,38 +1,151 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Web;
 
 namespace shared.FormData
 {
-    
     public class ServerServiceRequest
     {
-        public int? Customer_CustID{ get; set; }
-        public string Customer_FirstName { get; set; }
-        public string Customer_LastName { get; set; }
-        public string Customer_PhoneNumber { get; set; }
-
-        public int? Product_ProdID{ get; set; }
-        public string Product_ProdName { get; set; }
-        public double? Product_Price { get; set; }
-        public double? Product_ProdWeight { get; set; }
-        public byte? Product_InStock { get; set; }
-
-        public int? Order_OrderID{ get; set; }
-        public int? Order_CustID { get; set; }
-        public string Order_PoNumber { get; set; }
-        public string Order_OrderDate { get; set; }
-
-        public int? Cart_OrderID{ get; set; }
-        public int? Cart_ProdID { get; set; }
-        public int? Cart_Quantity { get; set; }
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ServerServiceRequest" /> class.
+        /// </summary>
         public ServerServiceRequest()
         {
         }
 
+        /// <summary>
+        /// Gets or sets the customer_ cust ID.
+        /// </summary>
+        /// <value>
+        /// The customer_ cust ID.
+        /// </value>
+        public int? Customer_CustID{ get; set; }
+
+        /// <summary>
+        /// Gets or sets the first name of the customer_.
+        /// </summary>
+        /// <value>
+        /// The first name of the customer_.
+        /// </value>
+        public string Customer_FirstName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the last name of the customer_.
+        /// </summary>
+        /// <value>
+        /// The last name of the customer_.
+        /// </value>
+        public string Customer_LastName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the customer_ phone number.
+        /// </summary>
+        /// <value>
+        /// The customer_ phone number.
+        /// </value>
+        public string Customer_PhoneNumber { get; set; }
+
+        /// <summary>
+        /// Gets or sets the product_ prod ID.
+        /// </summary>
+        /// <value>
+        /// The product_ prod ID.
+        /// </value>
+        public int? Product_ProdID{ get; set; }
+
+        /// <summary>
+        /// Gets or sets the name of the product_ prod.
+        /// </summary>
+        /// <value>
+        /// The name of the product_ prod.
+        /// </value>
+        public string Product_ProdName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the product_ price.
+        /// </summary>
+        /// <value>
+        /// The product_ price.
+        /// </value>
+        public double? Product_Price { get; set; }
+
+        /// <summary>
+        /// Gets or sets the product_ prod weight.
+        /// </summary>
+        /// <value>
+        /// The product_ prod weight.
+        /// </value>
+        public double? Product_ProdWeight { get; set; }
+
+        /// <summary>
+        /// Gets or sets the product_ in stock.
+        /// </summary>
+        /// <value>
+        /// The product_ in stock.
+        /// </value>
+        public byte? Product_InStock { get; set; }
+
+        /// <summary>
+        /// Gets or sets the order_ order ID.
+        /// </summary>
+        /// <value>
+        /// The order_ order ID.
+        /// </value>
+        public int? Order_OrderID{ get; set; }
+
+        /// <summary>
+        /// Gets or sets the order_ cust ID.
+        /// </summary>
+        /// <value>
+        /// The order_ cust ID.
+        /// </value>
+        public int? Order_CustID { get; set; }
+
+        /// <summary>
+        /// Gets or sets the order_ po number.
+        /// </summary>
+        /// <value>
+        /// The order_ po number.
+        /// </value>
+        public string Order_PoNumber { get; set; }
+
+        /// <summary>
+        /// Gets or sets the order_ order date.
+        /// </summary>
+        /// <value>
+        /// The order_ order date.
+        /// </value>
+        public string Order_OrderDate { get; set; }
+
+        /// <summary>
+        /// Gets or sets the cart_ order ID.
+        /// </summary>
+        /// <value>
+        /// The cart_ order ID.
+        /// </value>
+        public int? Cart_OrderID{ get; set; }
+
+        /// <summary>
+        /// Gets or sets the cart_ prod ID.
+        /// </summary>
+        /// <value>
+        /// The cart_ prod ID.
+        /// </value>
+        public int? Cart_ProdID { get; set; }
+
+        /// <summary>
+        /// Gets or sets the cart_ quantity.
+        /// </summary>
+        /// <value>
+        /// The cart_ quantity.
+        /// </value>
+        public int? Cart_Quantity { get; set; }
+
+        /// <summary>
+        /// Froms the table queries.
+        /// </summary>
+        /// <param name="tcvs">The TCVS.</param>
+        /// <returns>The service request</returns>
         public static ServerServiceRequest FromTableQueries(List<TableColumnValue> tcvs)
         {
             var data = new ServerServiceRequest();
@@ -90,6 +203,11 @@ namespace shared.FormData
             return data;
         }
 
+        /// <summary>
+        /// To the URL.
+        /// </summary>
+        /// <param name="withGeneratePurchaseOrder">if set to <c>true</c> [with generate purchase order].</param>
+        /// <returns>The url</returns>
         public string ToUrl(bool withGeneratePurchaseOrder = false)
         {
             var sb = new StringBuilder();
@@ -141,23 +259,48 @@ namespace shared.FormData
             return false;
         }
 
+        /// <summary>
+        /// Ignores the property.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <returns></returns>
         private static bool IgnoreProperty(string name)
         {
             return name.Equals("GenPurchaseOrder", StringComparison.CurrentCultureIgnoreCase);
         }
     }
 
+    /// <summary>
+    /// Represents a table column value.
+    /// </summary>
     public class TableColumnValue
     {
-        public string Table;
-        public string Column;
-        public string Value;
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TableColumnValue" /> class.
+        /// </summary>
+        /// <param name="table">The table.</param>
+        /// <param name="column">The column.</param>
+        /// <param name="value">The value.</param>
         public TableColumnValue(string table, string column, string value)
         {
             this.Table = table;
             this.Column = column;
             this.Value = value;
         }
+
+        /// <summary>
+        /// The table
+        /// </summary>
+        public string Table;
+
+        /// <summary>
+        /// The column
+        /// </summary>
+        public string Column;
+
+        /// <summary>
+        /// The value
+        /// </summary>
+        public string Value;
     }
 }

@@ -13,6 +13,11 @@ namespace ClientSite.Pages
     {
         public SearchResult SearchResult;
 
+        /// <summary>
+        /// Handles the Load event of the Page control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -66,6 +71,9 @@ namespace ClientSite.Pages
             }
         }
 
+        /// <summary>
+        /// Populates the search results.
+        /// </summary>
         private void PopulateSearchResults()
         {
             var columns = SearchResult.Columns;
@@ -110,6 +118,11 @@ namespace ClientSite.Pages
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the GoBack control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         protected void GoBack_Click(object sender, EventArgs e)
         {
             try
@@ -122,6 +135,11 @@ namespace ClientSite.Pages
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the Exit control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         protected void Exit_Click(object sender, EventArgs e)
         {
             try

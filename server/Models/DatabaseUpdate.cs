@@ -1,20 +1,29 @@
-﻿using server.Sql;
-using shared.FormData;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
-using System.Web;
+using server.Sql;
+using shared.FormData;
 
 namespace server.Models
 {
     public class DatabaseUpdate
     {
-        private ServerServiceRequest Data;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DatabaseUpdate" /> class.
+        /// </summary>
+        /// <param name="data">The data.</param>
         public DatabaseUpdate(ServerServiceRequest data)
         {
             this.Data = data;
         }
 
+        /// <summary>
+        /// The data
+        /// </summary>
+        private ServerServiceRequest Data;
+
+        /// <summary>
+        /// Inserts data into the database
+        /// </summary>
         public void Insert()
         {
             var context = new SoaDataContext();
@@ -84,6 +93,9 @@ namespace server.Models
             context.SubmitChanges();
         }
 
+        /// <summary>
+        /// Updates the database
+        /// </summary>
         public void Update()
         {
             var context = new SoaDataContext();
@@ -171,6 +183,9 @@ namespace server.Models
             context.SubmitChanges();
         }
 
+        /// <summary>
+        /// Deletes from the database
+        /// </summary>
         public void Delete()
         {
             var context = new SoaDataContext();

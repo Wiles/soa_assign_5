@@ -1,21 +1,35 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace shared
 {
     [Serializable]
     public class JsonSuccess
     {
-        public string Status { get; set; }
-        public string Message { get; set; }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="JsonSuccess" /> class.
+        /// </summary>
+        /// <param name="status">The status.</param>
+        /// <param name="message">The message.</param>
         public JsonSuccess(string status, string message)
         {
             this.Status = status;
             this.Message = message;
         }
 
+        /// <summary>
+        /// Gets or sets the status.
+        /// </summary>
+        /// <value>
+        /// The status.
+        /// </value>
+        public string Status { get; set; }
+
+        /// <summary>
+        /// Gets or sets the message.
+        /// </summary>
+        /// <value>
+        /// The message.
+        /// </value>
+        public string Message { get; set; }
     }
 }

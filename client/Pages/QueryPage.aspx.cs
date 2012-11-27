@@ -1,27 +1,27 @@
-﻿using ClientSite.AspTools;
-using ClientSite.Logic;
-using shared;
-using shared.FormData;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Web;
 using System.Web.Script.Serialization;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
+using ClientSite.AspTools;
+using ClientSite.Logic;
+using shared;
+using shared.FormData;
 
 namespace ClientSite.Pages
 {
     public partial class QueryPage : System.Web.UI.Page
     {
+        /// <summary>
+        /// Represents the page type
+        /// </summary>
         private enum PageType
         {
             Search,
@@ -29,6 +29,9 @@ namespace ClientSite.Pages
             Update
         }
 
+        /// <summary>
+        /// The request type
+        /// </summary>
         private PageType RequestType = PageType.Search;
 
         /// <summary>
@@ -38,8 +41,17 @@ namespace ClientSite.Pages
         /// </summary>
         public string SearchContent = "";
 
+        /// <summary>
+        /// The search result
+        /// </summary>
         public SearchResult SearchResult;
 
+        /// <summary>
+        /// Handles the Load event of the Page control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+        /// <exception cref="System.Collections.Generic.KeyNotFoundException"></exception>
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -75,6 +87,11 @@ namespace ClientSite.Pages
             }
         }
 
+        /// <summary>
+        /// Setups the page.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <param name="first">if set to <c>true</c> [first].</param>
         private void SetupPage(PageType type, bool first = false)
         {
             switch (type)
@@ -116,11 +133,21 @@ namespace ClientSite.Pages
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the goBack control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         protected void goBack_Click(object sender, EventArgs e)
         {
             Response.Redirect("/Default.aspx");
         }
 
+        /// <summary>
+        /// Handles the Click event of the execute control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         protected void execute_Click(object sender, EventArgs e)
         {
             ClientErrors.Text = "Client Errors<br>...";
@@ -313,6 +340,10 @@ Customer firstName, Order orderID, Order poNumber or Order orderDate when 'Gener
             }
         }
 
+        /// <summary>
+        /// Populates the fields.
+        /// </summary>
+        /// <param name="data">The data.</param>
         private void PopulateFields(ServerServiceRequest data)
         {
 
@@ -421,6 +452,11 @@ Customer firstName, Order orderID, Order poNumber or Order orderDate when 'Gener
             }
         }
 
+        /// <summary>
+        /// Enforces the required insert fields filled.
+        /// </summary>
+        /// <param name="data">The data.</param>
+        /// <returns></returns>
         private bool EnforceRequiredInsertFieldsFilled(ServerServiceRequest data)
         {
             bool missingMandatoryField = false;
@@ -496,11 +532,21 @@ Customer firstName, Order orderID, Order poNumber or Order orderDate when 'Gener
             return !missingMandatoryField;
         }
 
+        /// <summary>
+        /// Handles the Click event of the exit control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         protected void exit_Click(object sender, EventArgs e)
         {
             Response.Redirect(Constants.HomePage);
         }
 
+        /// <summary>
+        /// Handles the CheckedChanged event of the generatePurchaseOrder control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         protected void generatePurchaseOrder_CheckedChanged(object sender, EventArgs e)
         {
             if (GeneratePurchaseOrder.Checked)
@@ -520,26 +566,50 @@ Customer firstName, Order orderID, Order poNumber or Order orderDate when 'Gener
             }
         }
 
+        /// <summary>
+        /// Handles the CheckedChanged event of the customerRadio control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         protected void customerRadio_CheckedChanged(object sender, EventArgs e)
         {
             UpdateEnabledRows();
         }
 
+        /// <summary>
+        /// Handles the CheckedChanged event of the productRadio control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         protected void productRadio_CheckedChanged(object sender, EventArgs e)
         {
             UpdateEnabledRows();
         }
 
+        /// <summary>
+        /// Handles the CheckedChanged event of the orderRadio control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         protected void orderRadio_CheckedChanged(object sender, EventArgs e)
         {
             UpdateEnabledRows();
         }
 
+        /// <summary>
+        /// Handles the CheckedChanged event of the cartRadio control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         protected void cartRadio_CheckedChanged(object sender, EventArgs e)
         {
             UpdateEnabledRows();
         }
 
+        /// <summary>
+        /// Disables all inputs.
+        /// </summary>
+        /// <param name="disable">if set to <c>true</c> [disable].</param>
         private void DisableAllInputs(bool disable = true)
         {
             foreach (var form in Controls)
@@ -560,6 +630,9 @@ Customer firstName, Order orderID, Order poNumber or Order orderDate when 'Gener
             SoldOut.Enabled = false;
         }
 
+        /// <summary>
+        /// Updates the enabled rows.
+        /// </summary>
         private void UpdateEnabledRows()
         {
             if (this.RequestType == PageType.Search)
@@ -604,16 +677,30 @@ Customer firstName, Order orderID, Order poNumber or Order orderDate when 'Gener
         }
 
 
+        /// <summary>
+        /// Determines whether [has client errors].
+        /// </summary>
+        /// <returns>
+        ///   <c>true</c> if [has client errors]; otherwise, <c>false</c>.
+        /// </returns>
         private bool HasClientErrors()
         {
             return ClientErrors.Text.Contains('-');
         }
 
+        /// <summary>
+        /// Appends the client error.
+        /// </summary>
+        /// <param name="message">The message.</param>
         private void AppendClientError(string message)
         {
             ClientErrors.Text += "<br>- " + message;
         }
 
+        /// <summary>
+        /// Appends the server error.
+        /// </summary>
+        /// <param name="message">The message.</param>
         private void AppendServerError(string message)
         {
             ServerErrors.Text += "<br>- " + message;

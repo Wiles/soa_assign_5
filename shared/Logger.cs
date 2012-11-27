@@ -1,17 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace shared
 {
     public class Logger
     {
+        /// <summary>
+        /// The singleton instance
+        /// </summary>
         private static Logger instance;
+
+        /// <summary>
+        /// Gets the singleton instance.
+        /// </summary>
+        /// <returns>The singleton instance</returns>
         public static Logger GetInstance()
         {
             if (instance == null)
@@ -23,13 +27,29 @@ namespace shared
             return instance;
         }
 
+        /// <summary>
+        /// The path
+        /// </summary>
         private readonly string Path;
-        private readonly Mutex mutex = new Mutex(); 
+
+        /// <summary>
+        /// The mutex
+        /// </summary>
+        private readonly Mutex mutex = new Mutex();
+
+        /// <summary>
+        /// Prevents a default instance of the <see cref="Logger" /> class from being created.
+        /// </summary>
+        /// <param name="path">The path.</param>
         private Logger(string path)
         {
             this.Path = path;
         }
 
+        /// <summary>
+        /// Writes the specified message.
+        /// </summary>
+        /// <param name="message">The message.</param>
         public void Write(string message)
         {
             if (mutex.WaitOne())
@@ -42,6 +62,11 @@ namespace shared
             }
         }
 
+        /// <summary>
+        /// Writes the specified message.
+        /// </summary>
+        /// <param name="message">The message.</param>
+        /// <param name="args">The args.</param>
         public void Write(string message, params object[] args)
         {
             if (mutex.WaitOne())
@@ -54,11 +79,21 @@ namespace shared
             }
         }
 
+        /// <summary>
+        /// Writes the specified exception.
+        /// </summary>
+        /// <param name="ex">The ex.</param>
         public void Write(Exception ex)
         {
             Write(ex, ex.Message, new object[] { });
         }
-        
+
+        /// <summary>
+        /// Writes the specified exception.
+        /// </summary>
+        /// <param name="ex">The ex.</param>
+        /// <param name="message">The message.</param>
+        /// <param name="args">The args.</param>
         public void Write(Exception ex, string message, params object[] args)
         {
             if (mutex.WaitOne())

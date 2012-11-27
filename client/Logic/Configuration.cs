@@ -1,13 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Web;
 
 namespace ClientSite.Logic
 {
     public class ClientConfiguration
     {
+        /// <summary>
+        /// Gets the server URL.
+        /// </summary>
+        /// <value>
+        /// The server URL.
+        /// </value>
         public static Uri ServerUrl
         {
             get

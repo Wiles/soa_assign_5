@@ -1,22 +1,22 @@
-﻿using ClientSite.Logic;
-using ClientSite.Sql;
-using shared;
-using shared.FormData;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
-using System.Web;
 using System.Web.Script.Serialization;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+using ClientSite.Logic;
+using ClientSite.Sql;
+using shared;
+using shared.FormData;
 
 namespace ClientSite.Pages
 {
     public partial class Delete : System.Web.UI.Page
     {
+        /// <summary>
+        /// Handles the Load event of the Page control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -49,6 +49,9 @@ namespace ClientSite.Pages
             }
         }
 
+        /// <summary>
+        /// Setups the delete buttons.
+        /// </summary>
         private void SetupDeleteButtons()
         {
             try
@@ -65,6 +68,12 @@ namespace ClientSite.Pages
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the CustomerDelete control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+        /// <exception cref="System.Exception">Failure to process Customer Drop Down</exception>
         protected void CustomerDelete_Click(object sender, EventArgs e)
         {
             try
@@ -81,6 +90,12 @@ namespace ClientSite.Pages
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the OrderDelete control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+        /// <exception cref="System.Exception">Failure to process Order Drop Down</exception>
         protected void OrderDelete_Click(object sender, EventArgs e)
         {
             try
@@ -97,6 +112,12 @@ namespace ClientSite.Pages
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the ProductDelete control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+        /// <exception cref="System.Exception">Failure to process Product Drop Down</exception>
         protected void ProductDelete_Click(object sender, EventArgs e)
         {
             try
@@ -113,6 +134,12 @@ namespace ClientSite.Pages
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the CartDelete control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+        /// <exception cref="System.Exception">Failure to process Cart Drop Down</exception>
         protected void CartDelete_Click(object sender, EventArgs e)
         {
             try
@@ -131,6 +158,10 @@ namespace ClientSite.Pages
             }
         }
 
+        /// <summary>
+        /// Issues the service delete.
+        /// </summary>
+        /// <param name="data">The data.</param>
         private void IssueServiceDelete(ServerServiceRequest data)
         {
             var js = new JavaScriptSerializer();
@@ -160,26 +191,51 @@ namespace ClientSite.Pages
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the GoBack control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         protected void GoBack_Click(object sender, EventArgs e)
         {
             Response.Redirect("/Default.aspx");
         }
 
+        /// <summary>
+        /// Handles the Click event of the Exit control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         protected void Exit_Click(object sender, EventArgs e)
         {
             Response.Redirect(Constants.HomePage);
         }
 
+        /// <summary>
+        /// Handles the DataBound event of the CustomerDropDown control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         protected void CustomerDropDown_DataBound(object sender, EventArgs e)
         {
             SetupDeleteButtons();
         }
 
+        /// <summary>
+        /// Handles the DataBound event of the OrderDropDown control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         protected void OrderDropDown_DataBound(object sender, EventArgs e)
         {
             SetupDeleteButtons();
         }
 
+        /// <summary>
+        /// Handles the DataBound event of the ProductDropDown control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         protected void ProductDropDown_DataBound(object sender, EventArgs e)
         {
             SetupDeleteButtons();

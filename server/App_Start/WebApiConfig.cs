@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Http;
+﻿using System.Web.Http;
 
 namespace server
 {
     public static class WebApiConfig
     {
+        /// <summary>
+        /// Registers the webapp configuration
+        /// </summary>
+        /// <param name="config">The config.</param>
         public static void Register(HttpConfiguration config)
         {
             config.Routes.MapHttpRoute(

@@ -1,18 +1,23 @@
-﻿using ClientSite.Logic;
-using shared;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
+using ClientSite.Logic;
+using shared;
 
 namespace ClientSite.Pages
 {
     public partial class SearchResultsPage : System.Web.UI.Page
     {
+        /// <summary>
+        /// The search result
+        /// </summary>
         public SearchResult SearchResult;
 
+        /// <summary>
+        /// Handles the Load event of the Page control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -44,6 +49,9 @@ namespace ClientSite.Pages
             }
         }
 
+        /// <summary>
+        /// Populates the search results.
+        /// </summary>
         private void PopulateSearchResults()
         {
             var columns = SearchResult.Columns;
@@ -88,6 +96,11 @@ namespace ClientSite.Pages
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the GoBack control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         protected void GoBack_Click(object sender, EventArgs e)
         {
             try
@@ -100,10 +113,20 @@ namespace ClientSite.Pages
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the Print control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         protected void Print_Click(object sender, EventArgs e)
         {
         }
 
+        /// <summary>
+        /// Handles the Click event of the Exit control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         protected void Exit_Click(object sender, EventArgs e)
         {
             try

@@ -1,24 +1,22 @@
-﻿using server.Models;
+﻿using System;
+using System.IO;
+using System.Linq;
+using System.Web.Mvc;
+using System.Web.Script.Serialization;
+using server.Models;
 using server.Sql;
 using shared;
 using shared.FormData;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Web;
-using System.Web.Http;
-using System.Web.Mvc;
-using System.Web.Script.Serialization;
 
 namespace server.Controllers
 {
     public class ServiceController : Controller
     {
-        //
-        // GET: /Service/.*?/*
+        /// <summary>
+        /// Handler for a get (search) request.
+        /// </summary>
+        /// <param name="values">The values.</param>
+        /// <returns>The JSON encoded request results</returns>
         public JsonResult Get(string[] values)
         {
             try
@@ -59,6 +57,11 @@ namespace server.Controllers
             }
         }
 
+        /// <summary>
+        /// Handler for a delete request
+        /// </summary>
+        /// <param name="values">The values.</param>
+        /// <returns>The JSON encoded delete request results</returns>
         public JsonResult Delete(string[] values)
         {
             try
@@ -84,6 +87,10 @@ namespace server.Controllers
             }
         }
 
+        /// <summary>
+        /// Handler for a post (insert) request
+        /// </summary>
+        /// <returns>The JSON encoded post response</returns>
         [System.Web.Mvc.HttpPost]
         public JsonResult Post()
         {
@@ -112,6 +119,10 @@ namespace server.Controllers
             }
         }
 
+        /// <summary>
+        /// Handler for a put (update) request
+        /// </summary>
+        /// <returns>The JSON encoded put response</returns>
         [System.Web.Mvc.HttpPut]
         public JsonResult Put()
         {
