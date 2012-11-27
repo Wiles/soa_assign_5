@@ -35,11 +35,13 @@ namespace server.Models
             if (Data.Order_OrderDate != null)
             {
                 order = new Order();
-                if (customer != null)
+
+                if (Data.Order_CustID == null)
                 {
-                    order.custID = customer.custID;
+                    throw new Exception("Please enter a CustID into the order table");
                 }
 
+                order.custID = (int)Data.Order_CustID;
                 order.orderDate = Data.Order_OrderDate;
                 order.poNumber = Data.Order_PoNumber;
 

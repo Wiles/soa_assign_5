@@ -32,9 +32,9 @@
         Customer<br />
         <asp:Label ID="Label2" runat="server" Text="CustID"></asp:Label>
         <asp:TextBox ID="CustId" runat="server" Width="173px" EnableTheming="True"></asp:TextBox>
-        <asp:Label ID="Label3" runat="server" Text="Firstname"></asp:Label>
+        <asp:Label ID="Label3" runat="server" Text="FirstName"></asp:Label>
         <asp:TextBox ID="FirstName" runat="server"></asp:TextBox>
-        <asp:Label ID="Label4" runat="server" Text="Lastname"></asp:Label>
+        <asp:Label ID="Label4" runat="server" Text="LastName"></asp:Label>
         <asp:TextBox ID="LastName" runat="server"></asp:TextBox>
         <asp:Label ID="Label5" runat="server" Text="Phone Number"></asp:Label>
         <asp:TextBox ID="Phonenumber" runat="server"></asp:TextBox>
@@ -54,7 +54,7 @@
         <asp:RadioButton ID="orderRadio" runat="server" GroupName="section" AutoPostBack="True" OnCheckedChanged="orderRadio_CheckedChanged" />
         Order<br />
         OrderID<asp:TextBox ID="OrderId" runat="server"></asp:TextBox>
-        CustId<asp:TextBox ID="OrderCustId" runat="server"></asp:TextBox>
+        CustID<asp:TextBox ID="OrderCustId" runat="server"></asp:TextBox>
         PoNumber<asp:TextBox ID="PoNumber" runat="server" Height="22px" Width="128px"></asp:TextBox>
         OrderDate<asp:TextBox ID="OrderDate" runat="server" Height="22px" Width="128px"></asp:TextBox>
         MM-DD-YY<br />
@@ -63,7 +63,7 @@
         <asp:RadioButton ID="cartRadio" runat="server" GroupName="section" AutoPostBack="True" OnCheckedChanged="cartRadio_CheckedChanged" />
         Cart<br />
         OrderID<asp:TextBox ID="CartOrderId" runat="server"></asp:TextBox>
-        ProdId<asp:TextBox ID="CartProdId" runat="server"></asp:TextBox>
+        ProdID<asp:TextBox ID="CartProdId" runat="server"></asp:TextBox>
         Quantity<asp:TextBox ID="Quantity" runat="server"></asp:TextBox>
         <br />
         <br />

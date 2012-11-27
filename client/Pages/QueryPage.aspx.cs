@@ -87,6 +87,7 @@ namespace ClientSite.Pages
                         productRadio.Visible = false;
                         cartRadio.Visible = false;
                         orderRadio.Visible = false;
+                        SoldOut.Visible = false;
 
                         GeneratePurchaseOrder.Visible = true;
                         break;
@@ -514,6 +515,7 @@ Customer firstName, Order orderID, Order poNumber or Order orderDate when 'Gener
             }
             else
             {
+                DisableAllInputs(false);
                 SetupPage(RequestType);
             }
         }
@@ -538,7 +540,7 @@ Customer firstName, Order orderID, Order poNumber or Order orderDate when 'Gener
             UpdateEnabledRows();
         }
 
-        private void DisableAllInputs()
+        private void DisableAllInputs(bool disable = true)
         {
             foreach (var form in Controls)
             {
@@ -549,7 +551,7 @@ Customer firstName, Order orderID, Order poNumber or Order orderDate when 'Gener
                         if (control is TextBox)
                         {
                             var textbox = (TextBox)control;
-                            textbox.ReadOnly = true;
+                            textbox.ReadOnly = disable;
                         }
                     }
                 }

@@ -236,24 +236,24 @@ namespace server.Models
 
 
             // Get the results
-            var hasCustomerField = (Data.Customer_CustID != null &&
-                Data.Customer_FirstName != null &&
-                Data.Customer_LastName != null &&
+            var hasCustomerField = (Data.Customer_CustID != null ||
+                Data.Customer_FirstName != null ||
+                Data.Customer_LastName != null ||
                 Data.Customer_PhoneNumber != null);
 
-            var hasProductField = (Data.Product_ProdID != null &&
-                Data.Product_ProdName != null &&
-                Data.Product_ProdWeight != null &&
-                Data.Product_Price != null &&
+            var hasProductField = (Data.Product_ProdID != null ||
+                Data.Product_ProdName != null ||
+                Data.Product_ProdWeight != null ||
+                Data.Product_Price != null ||
                 Data.Product_InStock != null);
 
-            var hasOrderField = (Data.Order_CustID != null &&
-                Data.Order_OrderDate != null &&
-                Data.Order_OrderID != null &&
+            var hasOrderField = (Data.Order_CustID != null ||
+                Data.Order_OrderDate != null ||
+                Data.Order_OrderID != null ||
                 Data.Order_PoNumber != null);
 
-            var hasCartField = (Data.Cart_OrderID != null &&
-                Data.Cart_ProdID != null &&
+            var hasCartField = (Data.Cart_OrderID != null ||
+                Data.Cart_ProdID != null ||
                 Data.Cart_Quantity != null);
 
             var showOnlyCustomer = hasCustomerField && !hasProductField && !hasOrderField && !hasCartField;
@@ -298,10 +298,12 @@ namespace server.Models
             if (showOnlyCustomer)
             {
                 searchResult.Columns.AddRange(customerFields);
+                searchResult.Columns.AddRange(cartFields);
             }
             else if (showOnlyProduct)
             {
                 searchResult.Columns.AddRange(productFields);
+                searchResult.Columns.AddRange(cartFields);
             }
             else if (showOrderAndCustomer)
             {
