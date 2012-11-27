@@ -4,11 +4,9 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>Query Mr. Freeman</title>
 
-    <style type="text/css">
-        input[readonly=readonly] { background-color: grey; }
-    </style>
+    <link rel="stylesheet" type="text/css" href="../Content/Site.css" />
 </head>
 <body>
     <form id="form1" runat="server">

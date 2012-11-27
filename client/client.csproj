@@ -240,7 +240,6 @@
     <Compile Include="Pages\SearchResultsPage.aspx.designer.cs">
       <DependentUpon>SearchResultsPage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\StreamReaderresponseStream.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
