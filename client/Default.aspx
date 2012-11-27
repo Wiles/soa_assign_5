@@ -31,18 +31,26 @@
         }
     </style>
 
-    Hello Mr.Freeman,<br />
+    <h1>CRAZY MELVIN'S SHOPPING EMPORIUM</h1>
+
+    <p>
+        Here at Crazy Melvin's we believe in selling things for cheap!!  That's why our User Interface is cheap!
+    </p>
+
+    <p>
+        Use the buttons below to tell me what you'd like to do here at Crazy Melvin's!!
+    </p>
+
     <br />
     <br />
     <asp:button id="search" runat="server" onclick="search_Click" text="Search" />
-    &nbsp;
-        <asp:button id="insert" runat="server" onclick="insert_Click" text="Insert Some Stuff" />
-    &nbsp;
-        <asp:button id="update" runat="server" onclick="update_Click" text="Update Some Stuff" />
-    &nbsp;
-        <asp:button id="delete" runat="server" onclick="delete_Click" text="Delete Some Stuff" />
-    &nbsp;
-        <asp:button id="exit" runat="server" onclick="exit_Click" text="Get me Outta Here!" />
+    <asp:button id="insert" runat="server" onclick="insert_Click" text="Insert Some Stuff" />
+    <asp:button id="update" runat="server" onclick="update_Click" text="Update Some Stuff" />
+    <asp:button id="delete" runat="server" onclick="delete_Click" text="Delete Some Stuff" />
+    <asp:button id="exit" runat="server" onclick="exit_Click" text="Get me Outta Here!" />
+
+    <br />
+    <p style="margin-top: 5000px; color: white">
+        (why you no muffins?) - Mr. Freeman
+    </p>
 </form>
-
-
