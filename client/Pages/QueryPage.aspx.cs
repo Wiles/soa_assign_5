@@ -183,7 +183,7 @@ Customer firstName, Order orderID, Order poNumber or Order orderDate when 'Gener
 
             // Check maximum lengths, because Linq to SQL generates crappy messages on the server end
             DateTime parsed;
-            if (data.Customer_PhoneNumber != null && !Regex.Match(data.Customer_PhoneNumber, @"(\d{3})-(\d{3})-(\d{4})").Success)
+            if (data.Customer_PhoneNumber != null && !Regex.Match(data.Customer_PhoneNumber, @"^\d{3}-\d{3}-\d{4}$").Success)
             {
                 AppendClientError("Please use the following format on phone numbers (xxx-xxx-xxxx)");
                 return;

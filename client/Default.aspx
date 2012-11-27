@@ -20,11 +20,12 @@
         input[type="submit"],
         input[type="button"],
         button {
-            background-color: #d3dce0;
-            border: 1px solid #787878;
+            color: #333;
+            background-color: #e2e2e2;
+            border: 2px solid #333;
             cursor: pointer;
             font-size: 1.2em;
-            font-weight: 600;
+            font-weight: 300;
             padding: 7px;
             margin-right: 8px;
             width: auto;
